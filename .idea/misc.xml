@@ -5,10 +5,16 @@
       <map>
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/button_background.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/edit_text_background.xml" value="0.2" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_back.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_email.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_lock.xml" value="0.22072368421052632" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/text_view_background.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout-v23/activity_main.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_splash_screen.xml" value="0.20789473684210527" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_forgot_password.xml" value="0.20789473684210527" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_sign_up_options.xml" value="0.20789473684210527" />
       </map>
     </option>
   </component>
