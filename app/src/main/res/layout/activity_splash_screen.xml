@@ -8,13 +8,15 @@
 
     <ImageView
         android:id="@+id/JIMS_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@drawable/jims"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:contentDescription="@drawable/logo1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/jims" />
+        app:layout_constraintVertical_bias="0.41000003"
+        app:srcCompat="@drawable/logo1" />
 
     <ProgressBar
         android:id="@+id/progressBar"
