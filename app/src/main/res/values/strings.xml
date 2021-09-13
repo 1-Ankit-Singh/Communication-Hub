@@ -11,4 +11,6 @@
     <string name="professor">Professor</string>
     <string name="password_reset_link_will_be_sent_to_the_registered_e_mail">Password reset link will be sent to the registered E-mail</string>
     <string name="send">Send</string>
+    <string name="verify_your_number">Verify Your Number</string>
+    <string name="verify_number_hint">Please enter your mobile number.You will get a SMS including a verification code.</string>
 </resources>

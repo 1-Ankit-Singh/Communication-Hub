@@ -17,7 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Thread {
             Thread.sleep(1000)
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this,LoginActivity::class.java))
             finish()
         }.start()
 
