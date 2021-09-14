@@ -1,16 +1,25 @@
 <resources>
     <string name="app_name">CLIQUE</string>
-    <string name="password">Password</string>
-    <string name="email">Email</string>
-    <string name="login_on">Login on\nCLIQUE</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="login">Login</string>
-    <string name="not_a_member_sign_up_now">Not a Member? Sign up Now</string>
-    <string name="student">Student</string>
-    <string name="or">OR</string>
-    <string name="professor">Professor</string>
-    <string name="password_reset_link_will_be_sent_to_the_registered_e_mail">Password reset link will be sent to the registered E-mail</string>
-    <string name="send">Send</string>
     <string name="verify_your_number">Verify Your Number</string>
     <string name="verify_number_hint">Please enter your mobile number.You will get a SMS including a verification code.</string>
+    <string name="resend_sms">Resend SMS</string>
+    <string name="send_verification_code">send verification code</string>
+    <string name="enter_6_digit_code">Enter 6-digit code</string>
+    <string name="hint">------</string>
+    <string name="verify_otp_details">Waiting to automatically detect an SMS sent to</string>
+    <string name="next">next</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="waiting_text">Waiting to automatically detect an SMS sent to\n %s Wrong Number?</string>
+    <string name="verify_number">Verify %s</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="like_message">Like message</string>
+    <string name="seconds_remaining">"Seconds remaining: %d"</string>
 </resources>

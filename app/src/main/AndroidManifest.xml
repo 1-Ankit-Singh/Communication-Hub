@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommunicationHub">
         <activity
+            android:name=".OtpActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -23,12 +26,6 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ForgotPasswordActivity"
             android:exported="true" />
     </application>
 

@@ -13,14 +13,14 @@
         android:layout_marginStart="85dp"
         android:contentDescription="@drawable/logo1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/options_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.41"
         app:srcCompat="@drawable/logo2" />
 
     <TextView
-        android:id="@+id/options_text_view"
+        android:id="@+id/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
