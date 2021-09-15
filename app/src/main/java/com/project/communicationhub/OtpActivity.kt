@@ -156,7 +156,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                         progressDialog.dismiss()
                     }
                     //First Time Login
-                    if (task.result?.additionalUserInfo?.isNewUser == true) {
+                    if (task.result.additionalUserInfo?.isNewUser == true) {
                         showSignUpActivity()
                     } else {
                         showHomeActivity()
@@ -200,6 +200,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         //val intent = Intent(this, SignUpActivity::class.java)
         //startActivity(intent)
         //finish()
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
     }
 
     private fun showHomeActivity() {
@@ -258,7 +259,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
             otpActivity.verification -> {
                 // try to enter the code by yourself to handle the case
                 // if user enter another sim card used in another phone ...
-                var code = otpActivity.sentCode.text.toString()
+                val code = otpActivity.sentCode.text.toString()
                 if (code.isNotEmpty() && !mVerificationId.isNullOrEmpty()) {
 
                     progressDialog = createProgressDialog("Please wait...", false)
@@ -289,15 +290,15 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         outState.putString(PHONE_NUMBER, phoneNumber)
     }
 
-    override fun onBackPressed() {
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         if (mCounterDown != null) {
             mCounterDown!!.cancel()
         }
+    }
+
+    override fun onBackPressed() {
+
     }
 
 }

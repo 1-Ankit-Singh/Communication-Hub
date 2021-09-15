@@ -3,7 +3,7 @@
     <string name="verify_your_number">Verify Your Number</string>
     <string name="verify_number_hint">Please enter your mobile number.You will get a SMS including a verification code.</string>
     <string name="resend_sms">Resend SMS</string>
-    <string name="send_verification_code">send verification code</string>
+    <string name="verify">Verify</string>
     <string name="enter_6_digit_code">Enter 6-digit code</string>
     <string name="hint">------</string>
     <string name="verify_otp_details">Waiting to automatically detect an SMS sent to</string>
