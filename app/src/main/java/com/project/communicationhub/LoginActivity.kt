@@ -12,7 +12,6 @@ class LoginActivity : AppCompatActivity(){
 
     // Initializing Variables
     private lateinit var loginActivity: ActivityLoginBinding
-
     private lateinit var phoneNumber: String
     private lateinit var countryCode: String
     private lateinit var alertDialogBuilder: MaterialAlertDialogBuilder

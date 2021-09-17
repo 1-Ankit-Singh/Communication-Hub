@@ -22,7 +22,6 @@
     <string name="sunday">Sunday</string>
     <string name="like_message">Like message</string>
     <string name="seconds_remaining">"Seconds remaining: %d"</string>
-    <string name="next">next</string>
     <string name="type_your_name_here">Type your name here</string>
     <string name="please_provided_your_name_and_an_profile_photo">Please provided your name and an profile photo</string>
     <string name="profile_info">Profile Info</string>

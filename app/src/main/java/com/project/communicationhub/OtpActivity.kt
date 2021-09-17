@@ -159,7 +159,8 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     if (task.result.additionalUserInfo?.isNewUser == true) {
                         showSignUpActivity()
                     } else {
-                        showHomeActivity()
+                        showSignUpActivity()
+                        //showHomeActivity()
                     }
                 } else {
 
@@ -200,7 +201,6 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
         finish()
-        //Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
     }
 
     private fun showHomeActivity() {
