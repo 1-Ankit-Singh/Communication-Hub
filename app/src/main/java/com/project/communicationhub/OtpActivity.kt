@@ -167,7 +167,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                         progressDialog.dismiss()
                     }
 
-                    notifyUserAndRetry("Your Phone Number Verification is failed.Retry again!")
+                    notifyUserAndRetry("Your Phone Number Verification is failed. Retry again!")
                 }
             }
     }
@@ -197,10 +197,10 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showSignUpActivity() {
-        //val intent = Intent(this, SignUpActivity::class.java)
-        //startActivity(intent)
-        //finish()
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
+        finish()
+        //Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
     }
 
     private fun showHomeActivity() {
@@ -277,7 +277,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     progressDialog = createProgressDialog("Sending a verification code", false)
                     progressDialog.show()
                 } else {
-                    Toast.makeText(this, "Sorry, You Can't request new code now, Please wait ...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Sorry, You Can't request new code now, Please wait...", Toast.LENGTH_SHORT).show()
                 }
             }
 

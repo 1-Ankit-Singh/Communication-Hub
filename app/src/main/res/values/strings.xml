@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">CLIQUE</string>
     <string name="verify_your_number">Verify Your Number</string>
-    <string name="verify_number_hint">Please enter your mobile number.You will get a SMS including a verification code.</string>
+    <string name="verify_number_hint">Please enter your mobile number. You will get a SMS including a verification code.</string>
     <string name="resend_sms">Resend SMS</string>
     <string name="verify">Verify</string>
     <string name="enter_6_digit_code">Enter 6-digit code</string>
     <string name="hint">------</string>
-    <string name="verify_otp_details">Waiting to automatically detect an SMS sent to</string>
+    <string name="verify_otp_details">Waiting to automatically detect an SMS sent to\n +919818170957 Wrong Number?</string>
     <string name="next">next</string>
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="waiting_text">Waiting to automatically detect an SMS sent to\n %s Wrong Number?</string>
@@ -22,4 +22,8 @@
     <string name="sunday">Sunday</string>
     <string name="like_message">Like message</string>
     <string name="seconds_remaining">"Seconds remaining: %d"</string>
+    <string name="next">next</string>
+    <string name="type_your_name_here">Type your name here</string>
+    <string name="please_provided_your_name_and_an_profile_photo">Please provided your name and an profile photo</string>
+    <string name="profile_info">Profile Info</string>
 </resources>
