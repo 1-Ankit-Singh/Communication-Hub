@@ -19,12 +19,11 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Thread {
             Thread.sleep(1000)
-            startActivity(Intent(this,LoginActivity::class.java))
-            /*if(auth.currentUser == null){
+            if(auth.currentUser == null){
                 startActivity(Intent(this,LoginActivity::class.java))
             }else{
                 startActivity(Intent(this,MainActivity::class.java))
-            }*/
+            }
             finish()
         }.start()
 

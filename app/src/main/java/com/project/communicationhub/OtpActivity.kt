@@ -159,8 +159,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     if (task.result.additionalUserInfo?.isNewUser == true) {
                         showSignUpActivity()
                     } else {
-                        showSignUpActivity()
-                        //showHomeActivity()
+                        showHomeActivity()
                     }
                 } else {
 

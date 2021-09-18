@@ -40,7 +40,6 @@
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,14 +72,95 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="30dp"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="8dp"
+                    android:background="@drawable/edit_text_background"
                     android:hint="@string/type_your_name_here"
                     android:imeActionLabel="Send"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:padding="8dp"
                     android:singleLine="true"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
+                    tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+                <EditText
+                    android:id="@+id/dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="30dp"
+                    android:drawableStart="@drawable/ic_date"
+                    android:drawablePadding="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="@string/select_your_dob_here"
+                    android:imeActionLabel="Send"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp"
                     tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/edit_text_background"
+                    android:text="@string/gender"
+                    android:textColor="@color/black"
+                    android:padding="8dp"
+                    android:textSize="20sp"/>
+
+                <RadioGroup
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="30dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_text_background"
+                        android:text="@string/male"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck" />
+
+                    <RadioButton
+                        android:id="@+id/female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_text_background"
+                        android:text="@string/female"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck" />
+
+                    <RadioButton
+                        android:id="@+id/others"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_text_background"
+                        android:text="@string/others"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck" />
+                </RadioGroup>
 
 
                 <com.google.android.material.button.MaterialButton
@@ -88,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="30dp"
                     android:enabled="false"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp"
@@ -97,7 +177,7 @@
                     android:text="@string/next"
                     android:textAllCaps="true"
                     android:textColor="#fff"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="normal"
                     app:cornerRadius="5dp" />
 

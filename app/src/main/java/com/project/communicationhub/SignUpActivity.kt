@@ -2,13 +2,16 @@ package com.project.communicationhub
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -17,21 +20,17 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.project.communicationhub.databinding.ActivitySignUpBinding
 import com.project.communicationhub.models.User
-import kotlin.math.sign
+import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
 
     // Initializing Variables
     private lateinit var signUpActivity: ActivitySignUpBinding
-    private val storage by lazy {
-        FirebaseStorage.getInstance()
-    }
-    private val auth by lazy {
-        FirebaseAuth.getInstance()
-    }
-    private val database by lazy {
-        FirebaseFirestore.getInstance()
-    }
+    //Variable to set date
+    private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+    private val storage =FirebaseStorage.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseFirestore.getInstance()
     private lateinit var downloadUrl: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,15 +42,48 @@ class SignUpActivity : AppCompatActivity() {
             checkPermissionForImage()
         }
 
+        signUpActivity.dob.setOnClickListener {
+            val calender = Calendar.getInstance()
+            val year = calender.get(Calendar.YEAR)
+            val month = calender.get(Calendar.MONTH)
+            val day = calender.get(Calendar.DAY_OF_MONTH)
+
+            val dialog = DatePickerDialog(
+                this
+                , android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                , dateSetListener
+                , year, month, day)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+
+        }
+
+        dateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+            val date = "$day/${month+1}/$year"
+            signUpActivity.dob.setText(date)
+        }
+
         signUpActivity.nextBtn.setOnClickListener {
             signUpActivity.nextBtn.isEnabled = false
             val name = signUpActivity.name.text.toString()
+            val dob = signUpActivity.dob.text.toString()
+            val gender = when {
+                signUpActivity.male.isChecked -> {
+                    "Male"
+                }
+                signUpActivity.female.isChecked -> {
+                    "Female"
+                }
+                else -> {
+                    "Other"
+                }
+            }
             if (!::downloadUrl.isInitialized) {
                 Toast.makeText(this, "Photo cannot be empty", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT).show()
             } else {
-                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnail url*/, auth.uid!!)
+                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnail url*/, auth.uid!!, dob, gender)
                 database.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
