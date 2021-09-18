@@ -1,4 +1,4 @@
-package com.project.communicationhub
+package com.project.communicationhub.auth
 
 import android.Manifest
 import android.app.Activity
@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.project.communicationhub.MainActivity
 import com.project.communicationhub.databinding.ActivitySignUpBinding
 import com.project.communicationhub.models.User
 import java.util.*
@@ -79,9 +80,13 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
             if (!::downloadUrl.isInitialized) {
-                Toast.makeText(this, "Photo cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Photo cannot be empty!", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
-                Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show()
+            } else if (dob.isEmpty()){
+                Toast.makeText(this, "DOB cannot be empty!", Toast.LENGTH_SHORT).show()
+            } else if (gender.isEmpty()){
+                Toast.makeText(this, "Please select your gender!", Toast.LENGTH_SHORT).show()
             } else {
                 val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnail url*/, auth.uid!!, dob, gender)
                 database.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {

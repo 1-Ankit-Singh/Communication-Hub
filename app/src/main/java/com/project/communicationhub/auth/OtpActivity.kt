@@ -1,4 +1,4 @@
-package com.project.communicationhub
+package com.project.communicationhub.auth
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.project.communicationhub.MainActivity
+import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ActivityOtpBinding
 import java.util.concurrent.TimeUnit
 
@@ -240,7 +242,8 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeft = millisUntilFinished
                 otpActivity.counter.isVisible = true
-                otpActivity.counter.text = getString(R.string.seconds_remaining
+                otpActivity.counter.text = getString(
+                    R.string.seconds_remaining
                     ,  millisUntilFinished / 1000)
 
                 //here you can have your logic to set text to edittext

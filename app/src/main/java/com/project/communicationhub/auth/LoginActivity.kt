@@ -1,4 +1,4 @@
-package com.project.communicationhub
+package com.project.communicationhub.auth
 
 import android.content.Intent
 import android.os.Bundle

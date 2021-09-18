@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
+import com.project.communicationhub.auth.LoginActivity
 import com.project.communicationhub.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class SplashScreenActivity : AppCompatActivity() {
         Thread {
             Thread.sleep(1000)
             if(auth.currentUser == null){
-                startActivity(Intent(this,LoginActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
             }else{
                 startActivity(Intent(this,MainActivity::class.java))
             }

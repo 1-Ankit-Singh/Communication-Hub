@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".auth.SignUpActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:context=".SignUpActivity">
+                tools:context=".auth.SignUpActivity">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:padding="15dp"
-                    android:text="@string/please_provided_your_name_and_an_profile_photo"
+                    android:text="@string/please_provided_your_details_and_an_profile_photo"
                     android:textSize="16sp" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -62,7 +62,6 @@
                     android:src="@drawable/defaultavatar"
                     app:shapeAppearanceOverlay="@style/RoundedImageView"
                     tools:ignore="SpeakableTextPresentCheck" />
-
 
                 <EditText
                     android:id="@+id/name"
@@ -83,6 +82,7 @@
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="20sp"
+                    android:elevation="2dp"
                     tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
                 <EditText
@@ -105,6 +105,7 @@
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="20sp"
+                    android:elevation="2dp"
                     tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
                 <TextView
@@ -118,6 +119,7 @@
                     android:text="@string/gender"
                     android:textColor="@color/black"
                     android:padding="8dp"
+                    android:elevation="2dp"
                     android:textSize="20sp"/>
 
                 <RadioGroup
@@ -137,6 +139,7 @@
                         android:background="@drawable/edit_text_background"
                         android:text="@string/male"
                         android:textSize="16sp"
+                        android:elevation="2dp"
                         tools:ignore="TextContrastCheck" />
 
                     <RadioButton
@@ -149,6 +152,7 @@
                         android:background="@drawable/edit_text_background"
                         android:text="@string/female"
                         android:textSize="16sp"
+                        android:elevation="2dp"
                         tools:ignore="TextContrastCheck" />
 
                     <RadioButton
@@ -159,6 +163,7 @@
                         android:background="@drawable/edit_text_background"
                         android:text="@string/others"
                         android:textSize="16sp"
+                        android:elevation="2dp"
                         tools:ignore="TextContrastCheck" />
                 </RadioGroup>
 
