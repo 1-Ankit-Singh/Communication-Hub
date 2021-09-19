@@ -16,6 +16,7 @@ import com.firebase.ui.firestore.paging.LoadingState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.project.communicationhub.ChatActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.FragmentChatsBinding
 import com.project.communicationhub.models.User
@@ -83,22 +84,35 @@ class PeopleFragment : Fragment() {
                 user: User
             ) {
                 // Bind to ViewHolder
-                if (viewHolder is UsersViewHolder)
+                if (viewHolder is UsersViewHolder) {
                     if (auth.uid == user.uid) {
-                        currentList?.snapshot()?.removeAt(position)
-                        notifyItemRemoved(position)
-                    } else{
+                        //currentList?.snapshot()?.removeAt(position)
+                        //notifyItemRemoved(position)
                         viewHolder.bind(user) { name: String, photo: String, id: String ->
-                            /*startActivity(
+                            startActivity(
                                 ChatActivity.createChatActivity(
                                     requireContext(),
                                     id,
                                     name,
                                     photo
                                 )
-                            )*/
+
+                            )
+                        }
+                    } else{
+                        viewHolder.bind(user) { name: String, photo: String, id: String ->
+                            startActivity(
+                                ChatActivity.createChatActivity(
+                                    requireContext(),
+                                    id,
+                                    name,
+                                    photo
+                                )
+
+                            )
                         }
                     }
+                }
             }
 
             override fun onError(e: Exception) {
@@ -150,7 +164,7 @@ class PeopleFragment : Fragment() {
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
             layoutManager = viewManager
-            //adapter = mAdapter
+            adapter = mAdapter
         }
 
     }

@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommunicationHub">
         <activity
+            android:name=".ChatActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
