@@ -101,7 +101,6 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     Log.e("Exception:", "FirebaseAuthInvalidCredentialsException", e)
                     Log.e("=========:", "FirebaseAuthInvalidCredentialsException " + e.message)
 
-
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     Log.e("Exception:", "FirebaseTooManyRequestsException", e)

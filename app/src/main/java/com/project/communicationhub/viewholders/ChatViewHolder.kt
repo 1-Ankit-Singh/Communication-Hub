@@ -6,10 +6,12 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.project.communicationhub.R
+import com.project.communicationhub.models.Inbox
+import com.project.communicationhub.utils.formatAsListItem
 import com.squareup.picasso.Picasso
 
 class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    /*fun bind(item: Inbox, onClick: (name: String, photo: String, id: String) -> Unit) =
+    fun bind(item: Inbox, onClick: (name: String, photo: String, id: String) -> Unit) =
         with(itemView) {
             val count = findViewById<TextView>(R.id.countTv)
             val time = findViewById<TextView>(R.id.timeTv)
@@ -31,5 +33,5 @@ class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             setOnClickListener {
                 onClick.invoke(item.name, item.image, item.from)
             }
-        }*/
+        }
 }

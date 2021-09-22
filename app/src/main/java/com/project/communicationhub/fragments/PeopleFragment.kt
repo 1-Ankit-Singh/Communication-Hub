@@ -33,7 +33,7 @@ class PeopleFragment : Fragment() {
     private lateinit var mAdapter: FirestorePagingAdapter<User, RecyclerView.ViewHolder>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private val database = FirebaseFirestore.getInstance().collection("users")
-            .orderBy("name", Query.Direction.DESCENDING)
+            .orderBy("name", Query.Direction.ASCENDING)
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
@@ -42,9 +42,11 @@ class PeopleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         peopleFragment = FragmentChatsBinding.inflate(inflater)
+
+
         viewManager = LinearLayoutManager(requireContext())
         setupAdapter()
-        //return inflater.inflate(R.layout.fragment_chats, container, false)
+
         return peopleFragment.root
     }
 
@@ -86,19 +88,8 @@ class PeopleFragment : Fragment() {
                 // Bind to ViewHolder
                 if (viewHolder is UsersViewHolder) {
                     if (auth.uid == user.uid) {
-                        //currentList?.snapshot()?.removeAt(position)
-                        //notifyItemRemoved(position)
-                        viewHolder.bind(user) { name: String, photo: String, id: String ->
-                            startActivity(
-                                ChatActivity.createChatActivity(
-                                    requireContext(),
-                                    id,
-                                    name,
-                                    photo
-                                )
-
-                            )
-                        }
+                        currentList?.snapshot()?.removeAt(position)
+                        notifyItemRemoved(position)
                     } else{
                         viewHolder.bind(user) { name: String, photo: String, id: String ->
                             startActivity(
@@ -108,7 +99,6 @@ class PeopleFragment : Fragment() {
                                     name,
                                     photo
                                 )
-
                             )
                         }
                     }
