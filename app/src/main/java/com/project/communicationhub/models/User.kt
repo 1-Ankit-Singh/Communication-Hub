@@ -16,6 +16,6 @@ data class User(
             this("", "", "", "", "", "", "", "Hey There, I am using CLIQUE", false)
 
     constructor(name: String, imageUrl: String, thumbImage: String, uid: String, dob: String, gender: String) :
-            this(name, imageUrl, thumbImage, uid = uid, dob = dob, gender = gender, "", status = "Hey There, I am using CLIQUE", online = false)
+            this(name = name, imageUrl = imageUrl, thumbImage = thumbImage, uid = uid, dob = dob, gender = gender, "", status = "Hey There, I am using CLIQUE", online = false)
 
 }
