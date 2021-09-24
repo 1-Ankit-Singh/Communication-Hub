@@ -6,7 +6,12 @@
         <item name="colorPrimary">@color/blue_200</item>
         <item name="colorPrimaryDark">@color/blue_700</item>
         <item name="colorAccent">@color/bluish_black</item>
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="CustomMediumShapeAppearance">
         <item name="cornerFamily">rounded</item>

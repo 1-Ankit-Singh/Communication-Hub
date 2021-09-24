@@ -16,23 +16,28 @@
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout-v23/activity_main.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_chat.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_forgot_password.xml" value="0.20532813515269654" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_history.xml" value="0.10986842105263157" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_login.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_otp.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_splash_screen.xml" value="0.20789473684210527" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_task.xml" value="0.25" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_todo.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/empty_view.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_chats.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_forgot_password.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_sign_up.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/fragment_sign_up_options.xml" value="0.20789473684210527" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/item_todo.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item_chat_recv_message.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item_chat_sent_message.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item_date_header.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/view_date_header.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/menu/main_menu.xml" value="0.20789473684210527" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/menu/todo_menu.xml" value="0.20789473684210527" />
       </map>
     </option>
   </component>
