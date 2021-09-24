@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -32,9 +33,9 @@ class ChatActivity : AppCompatActivity() {
 
     //Initializing variables
     private lateinit var chatActivity: ActivityChatBinding
-    private val friendId: String = intent.getStringExtra(USER_ID).toString()
-    private val name: String = intent.getStringExtra(USER_NAME).toString()
-    private val image: String = intent.getStringExtra(USER_THUMB_IMAGE).toString()
+    private lateinit var friendId: String
+    private lateinit var name: String
+    private lateinit var image: String
     private val mCurrentUid: String = FirebaseAuth.getInstance().uid!!
     private val db: FirebaseDatabase = FirebaseDatabase.getInstance()
     private lateinit var currentUser: User
@@ -48,6 +49,18 @@ class ChatActivity : AppCompatActivity() {
         EmojiManager.install(GoogleEmojiProvider())
         chatActivity = ActivityChatBinding.inflate(layoutInflater)
         setContentView(chatActivity.root)
+
+        setSupportActionBar(chatActivity.toolbar)
+
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setDisplayShowTitleEnabled(false)
+        }
+
+        friendId = intent.getStringExtra(USER_ID).toString()
+        name = intent.getStringExtra(USER_NAME).toString()
+        image = intent.getStringExtra(USER_THUMB_IMAGE).toString()
+
         keyboardVisibilityHelper = KeyboardVisibilityUtil(rootView) {
             msgRv.scrollToPosition(mutableItems.size - 1)
         }
@@ -102,6 +115,23 @@ class ChatActivity : AppCompatActivity() {
 
         updateReadCount()
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.itemId
+        if (id == R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun updateReadCount() {

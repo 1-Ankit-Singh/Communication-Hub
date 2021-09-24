@@ -16,7 +16,6 @@ import com.project.communicationhub.ChatActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.FragmentChatsBinding
 import com.project.communicationhub.models.Inbox
-import com.project.communicationhub.viewholders.ChatViewHolder
 import kotlinx.android.synthetic.main.fragment_chats.*
 
 class ChatsFragment : Fragment() {

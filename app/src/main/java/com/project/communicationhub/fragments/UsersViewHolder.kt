@@ -1,4 +1,4 @@
-package com.project.communicationhub.viewholders
+package com.project.communicationhub.fragments
 
 import android.view.View
 import android.widget.ImageView
