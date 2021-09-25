@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/openNewTaskFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -40,8 +41,8 @@
         android:layout_marginBottom="32dp"
         android:background="@color/baby_pink"
         android:backgroundTint="@color/baby_pink"
-        android:onClick="openNewTask"
         android:src="@drawable/ic_add_white_24dp"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+        android:contentDescription="@drawable/ic_add_white_24dp" />
 
 </RelativeLayout>

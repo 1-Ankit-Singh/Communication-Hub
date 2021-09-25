@@ -212,10 +212,10 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     // This method will send a code to a given phone number as an SMS
     private fun startPhoneNumberVerification(phoneNumber: String) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            phoneNumber,           // Phone number to verify
-            60,             // Timeout duration
-            TimeUnit.SECONDS,      // Unit of timeout
-            this,           // Activity (for callback binding)
+            phoneNumber,        // Phone number to verify
+            60,          // Timeout duration
+            TimeUnit.SECONDS,   // Unit of timeout
+            this,         // Activity (for callback binding)
             callbacks
         ) // OnVerificationStateChangedCallbacks
     }
@@ -225,11 +225,11 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         mResendToken: PhoneAuthProvider.ForceResendingToken?
     ) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            phoneNumber, // Phone number to verify
-            60, // Timeout duration
-            TimeUnit.SECONDS, // Unit of timeout
-            this, // Activity (for callback binding)
-            callbacks, // OnVerificationStateChangedCallbacks
+            phoneNumber,       // Phone number to verify
+            60,         // Timeout duration
+            TimeUnit.SECONDS,  // Unit of timeout
+            this,        // Activity (for callback binding)
+            callbacks,         // OnVerificationStateChangedCallbacks
             mResendToken
         ) // ForceResendingToken from callbacks
     }
@@ -266,7 +266,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     progressDialog = createProgressDialog("Please wait...", false)
                     progressDialog.show()
                     val credential =
-                        PhoneAuthProvider.getCredential(mVerificationId!!, code.toString())
+                        PhoneAuthProvider.getCredential(mVerificationId!!, code)
                     signInWithPhoneAuthCredential(credential)
                 }
             }

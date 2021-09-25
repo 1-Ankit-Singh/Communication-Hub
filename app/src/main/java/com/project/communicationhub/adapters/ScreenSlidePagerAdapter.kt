@@ -7,9 +7,9 @@ import com.project.communicationhub.fragments.ChatsFragment
 import com.project.communicationhub.fragments.PeopleFragment
 
 class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-    private val NUM_PAGES: Int = 2
+    private val numPages: Int = 2
 
-    override fun getItemCount(): Int = NUM_PAGES
+    override fun getItemCount(): Int = numPages
 
     override fun createFragment(position: Int): Fragment = when(position){
         0 -> ChatsFragment()

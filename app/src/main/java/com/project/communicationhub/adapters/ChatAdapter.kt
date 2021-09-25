@@ -113,7 +113,7 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
 }
 
 abstract class DoubleClickListener : View.OnClickListener {
-    var lastClickTime: Long = 0
+    private var lastClickTime: Long = 0
     override fun onClick(v: View?) {
         val clickTime = System.currentTimeMillis()
         if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {

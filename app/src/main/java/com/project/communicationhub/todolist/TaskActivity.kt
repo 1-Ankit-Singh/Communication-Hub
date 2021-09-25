@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import com.project.communicationhub.MainActivity
 import com.project.communicationhub.R
 import kotlinx.android.synthetic.main.activity_task.*
 import kotlinx.android.synthetic.main.activity_todo.*
@@ -26,17 +24,17 @@ const val DB_NAME = "todo.db"
 
 class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var myCalendar: Calendar
+    private lateinit var myCalendar: Calendar
 
-    lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
-    lateinit var timeSetListener: TimePickerDialog.OnTimeSetListener
+    private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+    private lateinit var timeSetListener: TimePickerDialog.OnTimeSetListener
 
-    var finalDate = 0L
-    var finalTime = 0L
+    private var finalDate = 0L
+    private var finalTime = 0L
 
     private val labels = arrayListOf("Personal", "Business", "Insurance", "Shopping", "Banking")
 
-    val db by lazy {
+    private val db by lazy {
         AppDatabase.getDatabase(this)
     }
 
@@ -70,6 +68,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
+        finish()
         startActivity(Intent(this, ToDoActivity::class.java))
     }
 

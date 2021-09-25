@@ -35,11 +35,11 @@ fun Date.isToday(): Boolean {
 }
 
 fun Date.isYesterday(): Boolean {
-    val yestercal = getInstance()
-    yestercal.add(DAY_OF_YEAR, -1)
+    val yesterday = getInstance()
+    yesterday.add(DAY_OF_YEAR, -1)
 
-    return yestercal.get(YEAR) == calendar.get(YEAR)
-            && yestercal.get(DAY_OF_YEAR) == calendar.get(DAY_OF_YEAR)
+    return yesterday.get(YEAR) == calendar.get(YEAR)
+            && yesterday.get(DAY_OF_YEAR) == calendar.get(DAY_OF_YEAR)
 }
 
 fun Date.isThisYear(): Boolean {
@@ -84,7 +84,7 @@ fun Date.formatAsWeekDay(c: Context): String {
     }
 }
 
-@SuppressLint("NewApi")
+@SuppressLint("NewApi", "WeekBasedYear")
 fun Date.formatAsFull(context: Context, abbreviated: Boolean = false): String {
     val month = if (abbreviated) "LLL" else "LLLL"
 

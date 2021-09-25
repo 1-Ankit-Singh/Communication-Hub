@@ -23,7 +23,6 @@ import com.project.communicationhub.models.User
 import com.project.communicationhub.viewholders.EmptyViewHolder
 import com.project.communicationhub.viewholders.UsersViewHolder
 
-
 private const val DELETED_VIEW_TYPE = 1
 private const val NORMAL_VIEW_TYPE = 2
 

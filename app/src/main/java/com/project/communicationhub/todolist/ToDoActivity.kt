@@ -5,7 +5,6 @@ import android.graphics.*
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -21,7 +20,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class ToDoActivity : AppCompatActivity() {
-    val list = arrayListOf<TodoModel>()
+    private val list = arrayListOf<TodoModel>()
     var adapter = TodoAdapter(list)
 
     val db by lazy {
@@ -55,9 +54,13 @@ class ToDoActivity : AppCompatActivity() {
             }
         })
 
+        openNewTaskFab.setOnClickListener {
+            openNewTask()
+        }
+
     }
 
-    fun initSwipe() {
+    private fun initSwipe() {
         val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(
             0,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -209,10 +212,12 @@ class ToDoActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+        startActivity(Intent(this, MainActivity::class.java)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
     }
 
-    fun openNewTask(view: View) {
+    private fun openNewTask() {
         startActivity(Intent(this, TaskActivity::class.java))
     }
 

@@ -59,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
 
         }
 
-        dateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+        dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
             val date = "$day/${month+1}/$year"
             signUpActivity.dob.setText(date)
         }

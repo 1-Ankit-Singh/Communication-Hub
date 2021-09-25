@@ -7,7 +7,6 @@ import androidx.room.Query
 
 @Dao
 interface TodoDao {
-
     @Insert()
     suspend fun insertTask(todoModel: TodoModel):Long
 
