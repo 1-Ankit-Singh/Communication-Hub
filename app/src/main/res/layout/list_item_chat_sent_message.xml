@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="5dp"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 tools:text="Hello" />
 
             <TextView
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="#A6ffffff"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 tools:text="12:00 AM" />
 
         </com.google.android.flexbox.FlexboxLayout>

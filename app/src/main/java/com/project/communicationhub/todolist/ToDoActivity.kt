@@ -2,24 +2,23 @@ package com.project.communicationhub.todolist
 
 import android.content.Intent
 import android.graphics.*
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.project.communicationhub.MainActivity
 import com.project.communicationhub.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_todo.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import androidx.core.view.MenuItemCompat
 
 class ToDoActivity : AppCompatActivity() {
     val list = arrayListOf<TodoModel>()
@@ -32,7 +31,12 @@ class ToDoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo)
-        setSupportActionBar(toolbar)
+
+        setSupportActionBar(toolbarToDo)
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+
         todoRv.apply {
             layoutManager = LinearLayoutManager(this@ToDoActivity)
             adapter = this@ToDoActivity.adapter
@@ -50,7 +54,6 @@ class ToDoActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
         })
-
 
     }
 
@@ -111,8 +114,6 @@ class ToDoActivity : AppCompatActivity() {
                             itemView.top.toFloat() + (itemView.bottom.toFloat() - itemView.top.toFloat() - icon.height.toFloat()) / 2,
                             paint
                         )
-
-
                     } else {
                         icon = BitmapFactory.decodeResource(resources, R.mipmap.ic_delete_white_png)
 
@@ -131,8 +132,6 @@ class ToDoActivity : AppCompatActivity() {
                         )
                     }
                     viewHolder.itemView.translationX = dX
-
-
                 } else {
                     super.onChildDraw(
                         canvas,
@@ -145,37 +144,31 @@ class ToDoActivity : AppCompatActivity() {
                     )
                 }
             }
-
-
         }
-
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(todoRv)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.todo_menu, menu)
         val item = menu.findItem(R.id.search_todo)
-        /*val searchView = item.actionView as SearchView
-        val searchView =
-            MenuItemCompat.getActionView(menu.findItem(R.id.search_todo)) as SearchView
+        val searchView = item.actionView as SearchView
         item.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 displayTodo()
                 return true
             }
-
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 displayTodo()
                 return true
             }
 
         })
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 if(!newText.isNullOrEmpty()){
                     displayTodo(newText)
@@ -183,8 +176,7 @@ class ToDoActivity : AppCompatActivity() {
                 return true
             }
 
-        })*/
-
+        })
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -202,16 +194,26 @@ class ToDoActivity : AppCompatActivity() {
         })
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.history -> {
-                startActivity(Intent(this, HistoryActivity::class.java))
+            R.id.home  -> {
+                onBackPressed()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
     fun openNewTask(view: View) {
         startActivity(Intent(this, TaskActivity::class.java))
     }
+
 }

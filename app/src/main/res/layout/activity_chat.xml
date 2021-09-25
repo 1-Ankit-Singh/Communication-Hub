@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         app:contentInsetStartWithNavigation="0dp"
@@ -77,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
+            android:backgroundTint="@color/gray_light"
             android:layout_toStartOf="@id/sendBtn"
             app:cardCornerRadius="30dp">
 
@@ -91,8 +92,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:contentDescription="@drawable/ic_chat_icons_smile"
-                    android:src="@drawable/ic_chat_icons_smile" />
+                    android:src="@drawable/ic_chat_icons_smile"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <com.vanniktech.emoji.EmojiEditText
                     android:id="@+id/msgEdtv"
@@ -101,7 +106,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@id/smileBtn"
-                    android:background="@android:color/white"
+                    android:background="@color/gray_light"
                     android:gravity="top|start"
                     android:hint="@string/type_your_message"
                     android:imeOptions="actionGo"
@@ -113,7 +118,7 @@
                     android:paddingBottom="18dp"
                     android:singleLine="false"
                     android:textColorHint="#b6b6b6"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     tools:ignore="TextContrastCheck" />
 
             </RelativeLayout>

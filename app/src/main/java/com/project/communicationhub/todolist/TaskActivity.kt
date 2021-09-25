@@ -2,15 +2,19 @@ package com.project.communicationhub.todolist
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
+import com.project.communicationhub.MainActivity
 import com.project.communicationhub.R
 import kotlinx.android.synthetic.main.activity_task.*
+import kotlinx.android.synthetic.main.activity_todo.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,9 +34,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     var finalDate = 0L
     var finalTime = 0L
 
-
     private val labels = arrayListOf("Personal", "Business", "Insurance", "Shopping", "Banking")
-
 
     val db by lazy {
         AppDatabase.getDatabase(this)
@@ -42,12 +44,33 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
 
+        setSupportActionBar(toolbarAddTask)
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+
         dateEdt.setOnClickListener(this)
         timeEdt.setOnClickListener(this)
         saveBtn.setOnClickListener(this)
 
-
         setUpSpinner()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.itemId
+        if (id == R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, ToDoActivity::class.java))
     }
 
     private fun setUpSpinner() {
@@ -131,7 +154,6 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDate()
-
             }
 
         val datePickerDialog = DatePickerDialog(
@@ -143,7 +165,6 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateDate() {
-        //Mon, 5 Jan 2020
         val myformat = "EEE, d MMM yyyy"
         val sdf = SimpleDateFormat(myformat)
         finalDate = myCalendar.time.time
