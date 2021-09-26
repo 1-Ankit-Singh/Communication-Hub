@@ -84,6 +84,7 @@ class ChatActivity : AppCompatActivity() {
         smileBtn.setOnClickListener {
             emojiPopup.toggle()
         }
+
         swipeToLoad.setOnRefreshListener {
             val workerScope = CoroutineScope(Dispatchers.Main)
             workerScope.launch {
@@ -146,7 +147,6 @@ class ChatActivity : AppCompatActivity() {
 
     private fun addMessage(event: Message) {
         val eventBefore = mutableItems.lastOrNull()
-
         // Add date header if it's a different day
         if ((eventBefore != null
                     && !eventBefore.sentAt.isSameDayAs(event.sentAt))
@@ -159,7 +159,6 @@ class ChatActivity : AppCompatActivity() {
             )
         }
         mutableItems.add(event)
-
         chatAdapter.notifyItemInserted(mutableItems.size)
         msgRv.scrollToPosition(mutableItems.size + 1)
     }
@@ -172,7 +171,6 @@ class ChatActivity : AppCompatActivity() {
             }
         }
         mutableItems[position] = msg
-
         chatAdapter.notifyItemChanged(position)
     }
 
@@ -180,29 +178,18 @@ class ChatActivity : AppCompatActivity() {
         getMessages(friendId)
             .orderByKey()
             .addChildEventListener(object : ChildEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-
-                }
-
-                override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-
-                }
-
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
                 override fun onChildChanged(data: DataSnapshot, p1: String?) {
                     val msg = data.getValue(Message::class.java)!!
                     newMsg(msg, true)
                 }
-
                 override fun onChildAdded(data: DataSnapshot, p1: String?) {
                     val msg = data.getValue(Message::class.java)!!
                     newMsg(msg, false)
                 }
-
-                override fun onChildRemoved(p0: DataSnapshot) {
-                }
-
+                override fun onChildRemoved(p0: DataSnapshot) {}
             })
-
     }
 
     private fun sendMessage(msg: String) {
@@ -230,7 +217,6 @@ class ChatActivity : AppCompatActivity() {
         getInbox(mCurrentUid, friendId).setValue(inboxMap).addOnSuccessListener {
             getInbox(friendId, mCurrentUid).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
-
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val value = snapshot.getValue(Inbox::class.java)
                     inboxMap.apply {
@@ -244,14 +230,12 @@ class ChatActivity : AppCompatActivity() {
                     }
                     getInbox(friendId, mCurrentUid).setValue(inboxMap)
                 }
-
             })
         }
 
         /*getInbox(friendId, mCurrentUid).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {}
-
             override fun onDataChange(p0: DataSnapshot) {
                 val value = p0.getValue(Inbox::class.java)
                 inboxMap.apply {
@@ -265,7 +249,6 @@ class ChatActivity : AppCompatActivity() {
                 }
                 getInbox(friendId, mCurrentUid).setValue(inboxMap)
             }
-
         })*/
     }
 

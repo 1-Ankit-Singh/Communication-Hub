@@ -25,15 +25,11 @@ const val DB_NAME = "todo.db"
 class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var myCalendar: Calendar
-
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
     private lateinit var timeSetListener: TimePickerDialog.OnTimeSetListener
-
     private var finalDate = 0L
     private var finalTime = 0L
-
     private val labels = arrayListOf("Personal", "Business", "Insurance", "Shopping", "Banking")
-
     private val db by lazy {
         AppDatabase.getDatabase(this)
     }
@@ -75,9 +71,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     private fun setUpSpinner() {
         val adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels)
-
         labels.sort()
-
         spinnerCategory.adapter = adapter
     }
 
@@ -93,14 +87,12 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
                 saveTodo()
             }
         }
-
     }
 
     private fun saveTodo() {
         val category = spinnerCategory.selectedItem.toString()
         val title = titleInpLay.editText?.text.toString()
         val description = taskInpLay.editText?.text.toString()
-
         GlobalScope.launch(Dispatchers.Main) {
             val id = withContext(Dispatchers.IO) {
                 return@withContext db.todoDao().insertTask(
@@ -115,38 +107,35 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
             }
             finish()
         }
-
     }
 
     private fun setTimeListener() {
         myCalendar = Calendar.getInstance()
-
         timeSetListener =
             TimePickerDialog.OnTimeSetListener() { _: TimePicker, hourOfDay: Int, min: Int ->
                 myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 myCalendar.set(Calendar.MINUTE, min)
                 updateTime()
             }
-
         val timePickerDialog = TimePickerDialog(
-            this, timeSetListener, myCalendar.get(Calendar.HOUR_OF_DAY),
-            myCalendar.get(Calendar.MINUTE), false
+            this,
+            timeSetListener,
+            myCalendar.get(Calendar.HOUR_OF_DAY),
+            myCalendar.get(Calendar.MINUTE),
+            false
         )
         timePickerDialog.show()
     }
 
     private fun updateTime() {
-        //Mon, 5 Jan 2020
         val myformat = "h:mm a"
         val sdf = SimpleDateFormat(myformat)
         finalTime = myCalendar.time.time
         timeEdt.setText(sdf.format(myCalendar.time))
-
     }
 
     private fun setListener() {
         myCalendar = Calendar.getInstance()
-
         dateSetListener =
             DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
                 myCalendar.set(Calendar.YEAR, year)
@@ -154,10 +143,12 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDate()
             }
-
         val datePickerDialog = DatePickerDialog(
-            this, dateSetListener, myCalendar.get(Calendar.YEAR),
-            myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)
+            this,
+            dateSetListener,
+            myCalendar.get(Calendar.YEAR),
+            myCalendar.get(Calendar.MONTH),
+            myCalendar.get(Calendar.DAY_OF_MONTH)
         )
         datePickerDialog.datePicker.minDate = System.currentTimeMillis()
         datePickerDialog.show()
@@ -168,9 +159,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
         val sdf = SimpleDateFormat(myformat)
         finalDate = myCalendar.time.time
         dateEdt.setText(sdf.format(myCalendar.time))
-
         timeInptLay.visibility = View.VISIBLE
-
     }
 
 }

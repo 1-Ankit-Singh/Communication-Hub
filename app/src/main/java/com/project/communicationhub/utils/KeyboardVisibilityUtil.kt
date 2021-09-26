@@ -11,8 +11,7 @@ class KeyboardVisibilityUtil(contentView: View, onKeyboardShown: (Boolean) -> Un
         val rectangle = Rect()
         contentView.getWindowVisibleDisplayFrame(rectangle)
         val screenHeight = contentView.rootView.height
-
-        // r.bottom is the position above soft keypad or device button.
+        // rectangle.bottom is the position above soft keypad or device button.
         // If keypad is shown, the rectangle.bottom is smaller than that before.
         val keypadHeight = screenHeight.minus(rectangle.bottom)
         // 0.15 ratio is perhaps enough to determine keypad height.
@@ -27,4 +26,5 @@ class KeyboardVisibilityUtil(contentView: View, onKeyboardShown: (Boolean) -> Un
         }
         currentKeyboardState = isKeyboardNowVisible
     }
+
 }

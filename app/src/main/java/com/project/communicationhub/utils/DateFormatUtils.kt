@@ -37,7 +37,6 @@ fun Date.isToday(): Boolean {
 fun Date.isYesterday(): Boolean {
     val yesterday = getInstance()
     yesterday.add(DAY_OF_YEAR, -1)
-
     return yesterday.get(YEAR) == calendar.get(YEAR)
             && yesterday.get(DAY_OF_YEAR) == calendar.get(DAY_OF_YEAR)
 }
@@ -69,7 +68,6 @@ fun Date.formatAsYesterday(c: Context): String {
 
 fun Date.formatAsWeekDay(c: Context): String {
     val s = { id: Int -> c.getString(id) }
-
     return when (calendar.get(DAY_OF_WEEK)) {
         MONDAY -> s(R.string.monday)
         TUESDAY -> s(R.string.tuesday)
@@ -87,14 +85,12 @@ fun Date.formatAsWeekDay(c: Context): String {
 @SuppressLint("NewApi", "WeekBasedYear")
 fun Date.formatAsFull(context: Context, abbreviated: Boolean = false): String {
     val month = if (abbreviated) "LLL" else "LLLL"
-
     return SimpleDateFormat("d $month YYYY", getCurrentLocale(context))
         .format(this)
 }
 
 fun Date.formatAsListItem(context: Context): String {
     val currentLocale = getCurrentLocale(context)
-
     return when {
         isToday() -> formatAsTime()
         isYesterday() -> formatAsYesterday(context)

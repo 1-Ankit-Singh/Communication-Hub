@@ -54,18 +54,8 @@ class MainActivity : AppCompatActivity() {
                 todo()
                 true
             }
-            R.id.logout -> {
-                logout()
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun logout() {
-        auth.signOut()
-        finish()
-        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     private fun profile() {

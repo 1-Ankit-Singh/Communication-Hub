@@ -80,22 +80,19 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                 if (::progressDialog.isInitialized) {
                     progressDialog.dismiss()
                 }
-
                 val smsMessageSent = credential.smsCode
-                if (!smsMessageSent.isNullOrBlank())
+                if (!smsMessageSent.isNullOrBlank()) {
                     otpActivity.sentCode.setText(smsMessageSent)
-
+                }
                 signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
-
                 if (::progressDialog.isInitialized) {
                     progressDialog.dismiss()
                 }
-
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     Log.e("Exception:", "FirebaseAuthInvalidCredentialsException", e)
@@ -105,26 +102,20 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     // The SMS quota for the project has been exceeded
                     Log.e("Exception:", "FirebaseTooManyRequestsException", e)
                 }
-
                 // Show a message and update the UI
                 notifyUserAndRetry("Your Phone Number might be wrong or connection error.Retry again!")
-
             }
 
             override fun onCodeSent(
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
-            ) {
-                //for low level version which doesn't do auto verification save the verification code and the token
-
+            ) { //for low level version which doesn't do auto verification save the verification code and the token
                 progressDialog.dismiss()
                 otpActivity.counter.isVisible = false
                 // Save verification ID and resending token so we can use them later
                 // Log.e("onCodeSent==", "onCodeSent:$verificationId")
-
                 mVerificationId = verificationId
                 mResendToken = token
-
             }
         }
     }
@@ -136,12 +127,10 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                 ds.color = ds.linkColor    // you can use custom color
                 ds.isUnderlineText = false // this remove the underline
             }
-
             override fun onClick(textView: View) { // handle click event
                 showLoginActivity()
             }
         }
-
         span.setSpan(clickSpan, span.length - 13, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         otpActivity.waiting.movementMethod = LinkMovementMethod.getInstance()
         otpActivity.waiting.text = span
@@ -152,7 +141,6 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-
                     if (::progressDialog.isInitialized) {
                         progressDialog.dismiss()
                     }
@@ -163,11 +151,9 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                         showHomeActivity()
                     }
                 } else {
-
                     if (::progressDialog.isInitialized) {
                         progressDialog.dismiss()
                     }
-
                     notifyUserAndRetry("Your Phone Number Verification is failed. Retry again!")
                 }
             }
@@ -223,8 +209,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     private fun resendVerificationCode(
         phoneNumber: String,
         mResendToken: PhoneAuthProvider.ForceResendingToken?
-    ) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+    ) { PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber,       // Phone number to verify
             60,         // Timeout duration
             TimeUnit.SECONDS,  // Unit of timeout
@@ -237,17 +222,14 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     private fun showTimer(milliesInFuture: Long) {
         otpActivity.resend.isEnabled = false
         mCounterDown = object : CountDownTimer(milliesInFuture, 1000) {
-
             override fun onTick(millisUntilFinished: Long) {
                 timeLeft = millisUntilFinished
                 otpActivity.counter.isVisible = true
                 otpActivity.counter.text = getString(
                     R.string.seconds_remaining
                     ,  millisUntilFinished / 1000)
-
                 //here you can have your logic to set text to edittext
             }
-
             override fun onFinish() {
                 otpActivity.resend.isEnabled = true
                 otpActivity.counter.isVisible = false
@@ -262,7 +244,6 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                 // if user enter another sim card used in another phone ...
                 val code = otpActivity.sentCode.text.toString()
                 if (code.isNotEmpty() && !mVerificationId.isNullOrEmpty()) {
-
                     progressDialog = createProgressDialog("Please wait...", false)
                     progressDialog.show()
                     val credential =
@@ -270,7 +251,6 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     signInWithPhoneAuthCredential(credential)
                 }
             }
-
             otpActivity.resend -> {
                 if (mResendToken != null) {
                     resendVerificationCode(phoneNumber.toString(), mResendToken)
@@ -281,7 +261,6 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "Sorry, You Can't request new code now, Please wait...", Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
     }
 
@@ -298,9 +277,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onBackPressed() {
-
-    }
+    override fun onBackPressed() {}
 
 }
 

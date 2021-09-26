@@ -8,26 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.project.communicationhub.R
 import com.project.communicationhub.models.User
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.list_item.view.*
 
 class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(user: User, onClick: (name: String, photo: String, id: String) -> Unit) =
         with(itemView) {
-            val count = findViewById<TextView>(R.id.countTv)
-            val time = findViewById<TextView>(R.id.timeTv)
-            val title = findViewById<TextView>(R.id.titleTv)
-            val subTitle = findViewById<TextView>(R.id.subTitleTv)
-            val userImg = findViewById<ImageView>(R.id.userImgView)
-
-            count.isVisible = false
-            time.isVisible = false
-
-            title.text = user.name
-            subTitle.text = user.status
+            countTv.isVisible = false
+            timeTv.isVisible = false
+            titleTv.text = user.name
+            subTitleTv.text = user.status
             Picasso.get()
                 .load(user.thumbImage)
                 .placeholder(R.drawable.defaultavatar)
                 .error(R.drawable.defaultavatar)
-                .into(userImg)
+                .into(userImgView)
             setOnClickListener {
                 onClick.invoke(user.name, user.thumbImage, user.uid)
             }

@@ -20,9 +20,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class ToDoActivity : AppCompatActivity() {
+
     private val list = arrayListOf<TodoModel>()
     var adapter = TodoAdapter(list)
-
     val db by lazy {
         AppDatabase.getDatabase(this)
     }
@@ -96,12 +96,10 @@ class ToDoActivity : AppCompatActivity() {
             ) {
                 if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                     val itemView = viewHolder.itemView
-
                     val paint = Paint()
                     val icon: Bitmap
 
                     if (dX > 0) {
-
                         icon = BitmapFactory.decodeResource(resources, R.mipmap.ic_check_white_png)
 
                         paint.color = Color.parseColor("#388E3C")
@@ -167,7 +165,6 @@ class ToDoActivity : AppCompatActivity() {
             }
 
         })
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false

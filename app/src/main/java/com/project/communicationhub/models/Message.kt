@@ -17,10 +17,8 @@ data class Message(
     val liked: Boolean = false,
     override val sentAt: Date = Date()
 ) : ChatEvent {
-
-    /** Empty [Constructor] for Firebase */
+    // Empty [Constructor] for Firebase
     constructor() : this("", "", "", "", 1, false, Date(0L))
-
 }
 
 data class DateHeader(override val sentAt: Date, val context: Context) : ChatEvent {

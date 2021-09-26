@@ -48,7 +48,6 @@ class SignUpActivity : AppCompatActivity() {
             val year = calender.get(Calendar.YEAR)
             val month = calender.get(Calendar.MONTH)
             val day = calender.get(Calendar.DAY_OF_MONTH)
-
             val dialog = DatePickerDialog(
                 this
                 , android.R.style.Theme_Holo_Light_Dialog_MinWidth
@@ -56,7 +55,6 @@ class SignUpActivity : AppCompatActivity() {
                 , year, month, day)
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
-
         }
 
         dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
@@ -108,7 +106,6 @@ class SignUpActivity : AppCompatActivity() {
             ) {
                 val permission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
                 val permissionWrite = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
                 requestPermissions(
                     permission,
                     1001
@@ -167,8 +164,6 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-
-    }
+    override fun onBackPressed() {}
 
 }

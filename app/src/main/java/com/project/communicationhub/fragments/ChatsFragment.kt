@@ -50,6 +50,7 @@ class ChatsFragment : Fragment() {
             .setLifecycleOwner(viewLifecycleOwner)
             .setQuery(baseQuery, Inbox::class.java)
             .build()
+
         // Instantiate Paging Adapter
         mAdapter = object : FirebaseRecyclerAdapter<Inbox, ChatViewHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
@@ -74,6 +75,7 @@ class ChatsFragment : Fragment() {
                 }
             }
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,7 +87,6 @@ class ChatsFragment : Fragment() {
             layoutManager = viewManager
             adapter = mAdapter
         }
-
     }
 
     override fun onStart() {

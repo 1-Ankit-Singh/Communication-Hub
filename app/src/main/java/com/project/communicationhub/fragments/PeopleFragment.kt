@@ -43,7 +43,6 @@ class PeopleFragment : Fragment() {
     ): View? {
         peopleFragment = FragmentChatsBinding.inflate(inflater)
 
-
         viewManager = LinearLayoutManager(requireContext())
         setupAdapter()
 
@@ -76,7 +75,6 @@ class PeopleFragment : Fragment() {
                         UsersViewHolder(inflater.inflate(R.layout.list_item, parent, false))
                     }
                     else -> EmptyViewHolder(inflater.inflate(R.layout.empty_view, parent, false))
-
                 }
             }
 
@@ -121,15 +119,9 @@ class PeopleFragment : Fragment() {
 
             override fun onLoadingStateChanged(state: LoadingState) {
                 when (state) {
-                    LoadingState.LOADING_INITIAL -> {
-                    }
-
-                    LoadingState.LOADING_MORE -> {
-                    }
-
-                    LoadingState.LOADED -> {
-                    }
-
+                    LoadingState.LOADING_INITIAL -> { }
+                    LoadingState.LOADING_MORE -> { }
+                    LoadingState.LOADED -> { }
                     LoadingState.ERROR -> {
                         Toast.makeText(
                             requireContext(),
@@ -137,13 +129,12 @@ class PeopleFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
-                    LoadingState.FINISHED -> {
-                    }
+                    LoadingState.FINISHED -> { }
                 }
             }
 
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -155,7 +146,6 @@ class PeopleFragment : Fragment() {
             layoutManager = viewManager
             adapter = mAdapter
         }
-
     }
 
 }

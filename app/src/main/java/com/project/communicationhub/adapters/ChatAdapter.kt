@@ -48,7 +48,6 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
     }
 
     override fun getItemViewType(position: Int): Int {
-
         return when (val event = list[position]) {
             is Message -> {
                 if (event.senderId == mCurrentUser) {
@@ -88,7 +87,6 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
                             }
                         }
                     }
-
                     TEXT_MESSAGE_SENT -> {
                         holder.itemView.highFiveImg.apply {
                             isVisible = item.liked
