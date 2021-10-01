@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun profile() {
-        startActivity(Intent(this, ToDoActivity::class.java))
+        startActivity(Intent(this, ProfileActivity::class.java))
     }
 
     private fun todo() {

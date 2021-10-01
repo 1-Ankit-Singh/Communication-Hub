@@ -46,4 +46,6 @@
     <string name="profile">Profile</string>
     <string name="time_table">Time Table</string>
     <string name="logout">Logout</string>
+    <string name="submit">Submit</string>
+    <string name="your_status">Your status</string>
 </resources>
