@@ -27,6 +27,7 @@
             android:adjustViewBounds="true"
             android:clickable="true"
             android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
             android:src="@drawable/defaultavatar"
             app:shapeAppearanceOverlay="@style/RoundedImageViewSmall"
@@ -41,6 +42,9 @@
             android:lines="1"
             android:textColor="@android:color/white"
             android:textSize="18sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:textStyle="bold"
             tools:text="Ankit Singh" />
     </com.google.android.material.appbar.MaterialToolbar>

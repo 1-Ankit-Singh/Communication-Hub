@@ -80,6 +80,14 @@ class ChatActivity : AppCompatActivity() {
         nameTv.text = name
         Picasso.get().load(image).into(userImgView)
 
+        nameTv.setOnClickListener {
+            viewProfile()
+        }
+
+        userImgView.setOnClickListener {
+            viewProfile()
+        }
+
         val emojiPopup = EmojiPopup.Builder.fromRootView(rootView).build(msgEdtv)
         smileBtn.setOnClickListener {
             emojiPopup.toggle()
@@ -116,6 +124,11 @@ class ChatActivity : AppCompatActivity() {
 
         updateReadCount()
 
+    }
+
+    private fun viewProfile() {
+        startActivity(Intent(this, OthersProfileActivity::class.java)
+            .putExtra(ID,friendId))
     }
 
     override fun onSupportNavigateUp(): Boolean {
