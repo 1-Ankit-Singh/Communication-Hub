@@ -3,6 +3,7 @@ package com.project.communicationhub.viewholders
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.project.communicationhub.R
@@ -24,6 +25,9 @@ class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 .placeholder(R.drawable.defaultavatar)
                 .error(R.drawable.defaultavatar)
                 .into(userImgView)
+            userImgView.setOnClickListener {
+                onClick.invoke(item.name, item.image, item.from)
+            }
             setOnClickListener {
                 onClick.invoke(item.name, item.image, item.from)
             }

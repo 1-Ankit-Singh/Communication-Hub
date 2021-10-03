@@ -1,10 +1,13 @@
 package com.project.communicationhub.fragments
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.paging.PagedList
@@ -16,12 +19,13 @@ import com.firebase.ui.firestore.paging.LoadingState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.project.communicationhub.ChatActivity
-import com.project.communicationhub.R
+import com.project.communicationhub.*
 import com.project.communicationhub.databinding.FragmentChatsBinding
 import com.project.communicationhub.models.User
 import com.project.communicationhub.viewholders.EmptyViewHolder
 import com.project.communicationhub.viewholders.UsersViewHolder
+import kotlinx.android.synthetic.main.list_item.*
+import kotlinx.android.synthetic.main.option_dialog_box.*
 
 private const val DELETED_VIEW_TYPE = 1
 private const val NORMAL_VIEW_TYPE = 2
@@ -90,6 +94,7 @@ class PeopleFragment : Fragment() {
                         notifyItemRemoved(position)
                     } else{
                         viewHolder.bind(user) { name: String, photo: String, id: String ->
+
                             startActivity(
                                 ChatActivity.createChatActivity(
                                     requireContext(),
@@ -98,6 +103,34 @@ class PeopleFragment : Fragment() {
                                     photo
                                 )
                             )
+
+                            /*//Adding custom Alert Dialog
+                            val inflater = LayoutInflater.from(activity)
+                            val view: View = inflater.inflate(R.layout.option_dialog_box, null)
+                            //Initialize alert dialog
+                            val builder = AlertDialog.Builder(activity)
+                            builder.setView(view)
+
+                            sendMessage.setOnClickListener {
+                                startActivity(
+                                    ChatActivity.createChatActivity(
+                                        requireContext(),
+                                        id,
+                                        name,
+                                        photo
+                                    )
+                                )
+                            }
+
+                            viewProfile.setOnClickListener {
+                                startActivity(Intent(context, OthersProfileActivity::class.java)
+                                    .putExtra(NAME, name)
+                                    .putExtra(IMAGE, photo))
+                            }
+
+                            //Show Dialog
+                            builder.show()*/
+
                         }
                     }
                 }

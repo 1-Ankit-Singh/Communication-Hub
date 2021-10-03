@@ -22,6 +22,21 @@
       android:contentDescription="@drawable/ic_edit_black_24dp"
       android:focusable="true" />
 
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/logout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:backgroundTint="@color/blue_200"
+      android:clickable="true"
+      android:contentDescription="@drawable/ic_logout"
+      android:focusable="true"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/scrollView2"
+      app:srcCompat="@drawable/ic_logout"
+      tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
   <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/appBarLayout"
       android:layout_width="match_parent"
@@ -96,6 +111,7 @@
             android:elevation="2dp"
             android:clickable="false"
             android:focusable="false"
+            android:text="@string/name"
             android:hint="@string/type_your_name_here"
             android:imeActionLabel="Send"
             android:imeOptions="actionUnspecified"
@@ -120,6 +136,7 @@
             android:focusable="false"
             android:hint="@string/select_your_dob_here"
             android:imeActionLabel="Send"
+            android:text="@string/dob"
             android:imeOptions="actionUnspecified"
             android:inputType="date"
             android:maxLines="1"
@@ -148,6 +165,7 @@
               android:lines="5"
               android:background="@drawable/edit_text_background"
               android:gravity="start"
+              android:text="@string/status"
               android:clickable="false"
               android:focusable="false"
               android:paddingStart="8dp"
@@ -219,41 +237,89 @@
               tools:ignore="TextContrastCheck" />
         </RadioGroup>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/submitBtn"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:enabled="true"
-            android:paddingStart="20dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="10dp"
-            android:text="@string/submit"
-            android:textAllCaps="true"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:visibility="gone"
-            android:textStyle="normal"
-            app:cornerRadius="5dp" />
+            android:orientation="horizontal">
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/cancelBtn"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:layout_marginEnd="12dp"
+              android:layout_marginStart="12dp"
+              android:enabled="true"
+              android:paddingStart="20dp"
+              android:paddingTop="10dp"
+              android:paddingEnd="20dp"
+              android:paddingBottom="10dp"
+              android:text="@string/cancel"
+              android:textAllCaps="true"
+              android:textColor="#fff"
+              android:textSize="20sp"
+              android:visibility="gone"
+              android:textStyle="normal"
+              app:cornerRadius="5dp" />
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/submitBtn"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:enabled="true"
+              android:layout_marginEnd="12dp"
+              android:layout_marginStart="12dp"
+              android:paddingStart="20dp"
+              android:paddingTop="10dp"
+              android:paddingEnd="20dp"
+              android:paddingBottom="10dp"
+              android:text="@string/submit"
+              android:textAllCaps="true"
+              android:textColor="#fff"
+              android:textSize="20sp"
+              android:visibility="gone"
+              android:textStyle="normal"
+              app:cornerRadius="5dp" />
+      </LinearLayout>
 
       </LinearLayout>
 
       <ImageView
-          android:id="@+id/ImageView3"
-          android:layout_width="300dp"
-          android:layout_height="300dp"
-          android:layout_marginStart="32dp"
+          android:id="@+id/logo"
+          android:layout_width="100dp"
+          android:layout_height="100dp"
+          android:layout_marginStart="85dp"
           android:layout_marginTop="32dp"
-          android:layout_marginEnd="32dp"
           android:layout_marginBottom="32dp"
-          android:contentDescription="@drawable/sign_up"
+          android:contentDescription="@drawable/logo"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintEnd_toStartOf="@+id/TextView"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-          app:srcCompat="@drawable/sign_up" />
+          app:layout_constraintVertical_bias="0.41000003"
+          app:srcCompat="@drawable/logo" />
+
+      <TextView
+          android:id="@+id/TextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:layout_marginEnd="85dp"
+          android:layout_marginBottom="32dp"
+          android:text="@string/app_name"
+          android:textAlignment="center"
+          android:textColor="@color/bluish_black"
+          android:textSize="44sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/logo"
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+          app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </ScrollView>

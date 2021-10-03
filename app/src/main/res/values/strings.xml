@@ -48,4 +48,12 @@
     <string name="logout">Logout</string>
     <string name="submit">Submit</string>
     <string name="your_status">Your status</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="dob">DOB</string>
+    <string name="status">Status</string>
+    <string name="cancel">Cancel</string>
+    <string name="what_do_you_want">What do you want?</string>
+    <string name="send_message">Send Message</string>
+    <string name="view_profile">View Profile</string>
 </resources>

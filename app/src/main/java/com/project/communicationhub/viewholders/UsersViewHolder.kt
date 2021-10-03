@@ -22,6 +22,9 @@ class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 .placeholder(R.drawable.defaultavatar)
                 .error(R.drawable.defaultavatar)
                 .into(userImgView)
+            userImgView.setOnClickListener {
+                onClick.invoke(user.name, user.thumbImage, user.uid)
+            }
             setOnClickListener {
                 onClick.invoke(user.name, user.thumbImage, user.uid)
             }

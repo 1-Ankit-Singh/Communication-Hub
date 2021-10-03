@@ -9,8 +9,10 @@
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_back.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_chat_icons_smile.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_date.xml" value="0.2179987004548408" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_edit_black_24dp.xml" value="0.2179987004548408" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_email.xml" value="0.22072368421052632" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_lock.xml" value="0.22072368421052632" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_logout.xml" value="0.2179987004548408" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_person.xml" value="0.2179987004548408" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/ic_search.xml" value="0.2179987004548408" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/drawable/text_view_background.xml" value="0.22072368421052632" />
@@ -20,6 +22,7 @@
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_history.xml" value="0.10986842105263157" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_login.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_others_profile.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_otp.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_profile.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
@@ -37,6 +40,7 @@
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item_chat_recv_message.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item_chat_sent_message.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/list_item_date_header.xml" value="0.20789473684210527" />
+        <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/option_dialog_box.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/layout/view_date_header.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/menu/main_menu.xml" value="0.20789473684210527" />
         <entry key="..\:/Users/thean/AndroidStudioProjects/CommunicationHub/app/src/main/res/menu/todo_menu.xml" value="0.20789473684210527" />

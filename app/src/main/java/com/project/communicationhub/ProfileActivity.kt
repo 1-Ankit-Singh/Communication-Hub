@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.project.communicationhub.auth.LoginActivity
 import com.project.communicationhub.databinding.ActivityProfileBinding
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile.view.*
@@ -72,14 +73,18 @@ class ProfileActivity : AppCompatActivity() {
             profileActivity.statusDetail.isFocusable = true
             profileActivity.status.requestFocus()
 
-            profileActivity.genderDetails.text = "Gender"
-
             val params: LinearLayout.LayoutParams =
                 LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
             params.setMargins(75, 60, 75, 0)
             profileActivity.genderDetails.layoutParams = params
             profileActivity.gender.visibility = View.VISIBLE
+            profileActivity.cancelBtn.visibility = View.VISIBLE
             profileActivity.submitBtn.visibility = View.VISIBLE
+        }
+
+        profileActivity.logout.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         profileActivity.userImage.setOnClickListener {
@@ -108,6 +113,32 @@ class ProfileActivity : AppCompatActivity() {
             val date = "$day/${month+1}/$year"
             profileActivity.dob.setText(date)
         }
+
+        profileActivity.cancelBtn.setOnClickListener {
+            editable = false
+
+            profileActivity.statusDetail.hint = "Enter your status"
+
+            profileActivity.name.isClickable = false
+            profileActivity.name.isFocusableInTouchMode = false
+            profileActivity.name.isFocusable = false
+
+            profileActivity.dob.isClickable = false
+
+            profileActivity.statusDetail.isClickable = false
+            profileActivity.statusDetail.isFocusableInTouchMode = false
+            profileActivity.statusDetail.isFocusable = false
+
+            profileActivity.gender.visibility = View.GONE
+
+            val params: LinearLayout.LayoutParams =
+                LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+            params.setMargins(75, 60, 75, 69)
+            profileActivity.genderDetails.layoutParams = params
+            profileActivity.cancelBtn.visibility = View.GONE
+            profileActivity.submitBtn.visibility = View.GONE
+        }
+
 
         profileActivity.submitBtn.setOnClickListener {
             editable = false

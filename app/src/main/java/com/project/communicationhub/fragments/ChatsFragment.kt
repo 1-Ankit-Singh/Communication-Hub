@@ -1,5 +1,7 @@
 package com.project.communicationhub.fragments
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +14,13 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
-import com.project.communicationhub.ChatActivity
-import com.project.communicationhub.R
+import com.project.communicationhub.*
 import com.project.communicationhub.databinding.FragmentChatsBinding
 import com.project.communicationhub.models.Inbox
 import com.project.communicationhub.viewholders.ChatViewHolder
 import kotlinx.android.synthetic.main.fragment_chats.*
+import kotlinx.android.synthetic.main.list_item.*
+import kotlinx.android.synthetic.main.option_dialog_box.*
 
 class ChatsFragment : Fragment() {
 
@@ -64,6 +67,7 @@ class ChatsFragment : Fragment() {
                 inbox: Inbox
             ) {
                 viewHolder.bind(inbox) { name: String, photo: String, id: String ->
+
                     startActivity(
                         ChatActivity.createChatActivity(
                             requireContext(),
@@ -72,6 +76,34 @@ class ChatsFragment : Fragment() {
                             photo
                         )
                     )
+
+                    /*//Adding custom Alert Dialog
+                    val inflater = LayoutInflater.from(activity)
+                    val view: View = inflater.inflate(R.layout.option_dialog_box, null)
+                    //Initialize alert dialog
+                    val builder = AlertDialog.Builder(activity)
+                    builder.setView(view)
+
+                    sendMessage.setOnClickListener {
+                        startActivity(
+                            ChatActivity.createChatActivity(
+                                requireContext(),
+                                id,
+                                name,
+                                photo
+                            )
+                        )
+                    }
+
+                    viewProfile.setOnClickListener {
+                        startActivity(Intent(context, OthersProfileActivity::class.java)
+                            .putExtra(NAME, name)
+                            .putExtra(IMAGE, photo))
+                    }
+
+                    //Show Dialog
+                    builder.show()*/
+
                 }
             }
         }
