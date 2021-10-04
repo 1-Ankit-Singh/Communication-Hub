@@ -1,4 +1,4 @@
-package com.project.communicationhub
+package com.project.communicationhub.interaction
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.project.communicationhub.MainActivity
+import com.project.communicationhub.R
 import com.project.communicationhub.adapters.ChatAdapter
 import com.project.communicationhub.databinding.ActivityChatBinding
 import com.project.communicationhub.models.*

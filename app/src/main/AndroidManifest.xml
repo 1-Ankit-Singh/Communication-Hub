@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
-            android:name=".OthersProfileActivity"
+            android:name=".interaction.OthersProfileActivity"
             android:exported="true" />
         <activity
             android:name=".todolist.TaskActivity"
@@ -23,10 +23,10 @@
             android:name=".todolist.ToDoActivity"
             android:exported="true" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".interaction.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".interaction.ChatActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

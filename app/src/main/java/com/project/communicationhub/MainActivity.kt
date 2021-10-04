@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.project.communicationhub.adapters.ScreenSlidePagerAdapter
-import com.project.communicationhub.auth.LoginActivity
 import com.project.communicationhub.databinding.ActivityMainBinding
+import com.project.communicationhub.interaction.ProfileActivity
 import com.project.communicationhub.todolist.ToDoActivity
 
 class MainActivity : AppCompatActivity() {

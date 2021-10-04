@@ -12,7 +12,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
-import com.project.communicationhub.ChatActivity
+import com.project.communicationhub.interaction.ChatActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.FragmentChatsBinding
 import com.project.communicationhub.models.Inbox

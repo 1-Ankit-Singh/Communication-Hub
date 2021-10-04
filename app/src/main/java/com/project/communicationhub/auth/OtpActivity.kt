@@ -185,6 +185,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun showSignUpActivity() {
         val intent = Intent(this, SignUpActivity::class.java)
+        intent.putExtra(USER_PHONE_NUMBER, phoneNumber)
         startActivity(intent)
         finish()
     }

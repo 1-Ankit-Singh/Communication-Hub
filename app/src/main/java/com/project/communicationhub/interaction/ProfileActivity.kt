@@ -1,4 +1,4 @@
-package com.project.communicationhub
+package com.project.communicationhub.interaction
 
 import android.Manifest
 import android.app.Activity
@@ -24,6 +24,8 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.project.communicationhub.MainActivity
+import com.project.communicationhub.R
 import com.project.communicationhub.auth.LoginActivity
 import com.project.communicationhub.databinding.ActivityProfileBinding
 import com.squareup.picasso.Picasso
@@ -220,6 +222,7 @@ class ProfileActivity : AppCompatActivity() {
                     profileActivity.dob.setText("DOB: " + it.getString("dob").toString())
                     profileActivity.status.editText?.setText(it.getString("status").toString())
                     profileActivity.statusDetail.hint = "Your status"
+                    profileActivity.phoneNumber.text = it.getString("phoneNumber").toString()
                     profileActivity.genderDetails.text = "Gender: " + it.getString("gender").toString()
                     val userImgUrl = it.getString("imageUrl").toString()
                     Picasso.get()

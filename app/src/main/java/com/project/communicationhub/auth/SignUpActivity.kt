@@ -3,6 +3,7 @@ package com.project.communicationhub.auth
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -20,8 +21,12 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.project.communicationhub.MainActivity
 import com.project.communicationhub.databinding.ActivitySignUpBinding
+import com.project.communicationhub.interaction.ID
 import com.project.communicationhub.models.User
+import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
+
+const val USER_PHONE_NUMBER = "USER_PHONE_NUMBER"
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -33,11 +38,15 @@ class SignUpActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
     private lateinit var downloadUrl: String
+    private lateinit var userPhoneNumber:String
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         signUpActivity = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(signUpActivity.root)
+
+        userPhoneNumber = intent.getStringExtra(USER_PHONE_NUMBER).toString()
 
         signUpActivity.userImage.setOnClickListener {
             checkPermissionForImage()
@@ -86,7 +95,7 @@ class SignUpActivity : AppCompatActivity() {
             } else if (gender.isEmpty()){
                 Toast.makeText(this, "Please select your gender!", Toast.LENGTH_SHORT).show()
             } else {
-                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnail url*/, auth.uid!!, dob, gender)
+                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnail url*/, auth.uid!!, dob, gender, userPhoneNumber)
                 database.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -141,6 +150,8 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun startUpload(filePath: Uri) {
         signUpActivity.nextBtn.isEnabled = false
+        progressDialog =  createProgressDialog("Uploading Image...", false)
+        progressDialog.show()
         val ref = storage.reference.child("uploads/" + auth.uid.toString())
         val uploadTask = ref.putFile(filePath)
         uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
@@ -153,6 +164,7 @@ class SignUpActivity : AppCompatActivity() {
         }).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 downloadUrl = task.result.toString()
+                progressDialog.dismiss()
                 signUpActivity.nextBtn.isEnabled = true
             } else {
                 signUpActivity.nextBtn.isEnabled = true
@@ -165,5 +177,13 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {}
+
+    private fun createProgressDialog(message: String, isCancelable: Boolean): ProgressDialog {
+        return ProgressDialog(this).apply {
+            setCancelable(isCancelable)
+            setCanceledOnTouchOutside(false)
+            setMessage(message)
+        }
+    }
 
 }
