@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.project.communicationhub.adapters.ScreenSlidePagerAdapter
 import com.project.communicationhub.databinding.ActivityMainBinding
 import com.project.communicationhub.interaction.ProfileActivity
+import com.project.communicationhub.news.NewsReadingActivity
 import com.project.communicationhub.todolist.ToDoActivity
 
 class MainActivity : AppCompatActivity() {
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity() {
                 todo()
                 true
             }
+            R.id.newsImage -> {
+                newsReader()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -64,6 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun todo() {
         startActivity(Intent(this, ToDoActivity::class.java))
+    }
+
+    private fun newsReader() {
+        startActivity(Intent(this, NewsReadingActivity::class.java))
     }
 
 }

@@ -56,4 +56,11 @@
     <string name="what_do_you_want">What do you want?</string>
     <string name="send_message">Send Message</string>
     <string name="view_profile">View Profile</string>
+    <string name="category">Category</string>
+    <string name="news">News</string>
+    <string name="books">Books</string>
+    <string name="help">Help</string>
+    <string name="group_video_call">Group Video Call</string>
+    <string name="news_heading">News Heading</string>
+    <string name="news_sub_heading">News Sub Heading</string>
 </resources>
