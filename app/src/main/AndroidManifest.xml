@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
+            android:name=".news.NewsDetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".news.NewsReadingActivity"
             android:exported="true" />
         <activity
