@@ -1,8 +1,7 @@
 package com.project.communicationhub.news
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.project.communicationhub.R
+import androidx.appcompat.app.AppCompatActivity
 import com.project.communicationhub.databinding.ActivityNewsDetailsBinding
 
 const val TITLE = "title"

@@ -4,16 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.communicationhub.MainActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ActivityNewsReadingBinding
 import kotlinx.android.synthetic.main.activity_news_reading.*
+import org.jetbrains.anko.doAsync
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Callback as Callback1
 
 class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickInterface {
 
@@ -41,17 +43,22 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
         categoryAdapter = CategoryAdapter(categoryModelArrayList, this
             , object : CategoryAdapter.CategoryClickInterface{
                 override fun onCategoryClick(position: Int) {
-                    TODO("Not yet implemented")
+                    val category = categoryModelArrayList[position].category
+                    getNews(category)
                 }
             }/*this@NewsReadingActivity as CategoryAdapter.CategoryClickInterface*/)
-        newsReadingActivity.news.layoutManager = LinearLayoutManager(this)
+        //newsReadingActivity.news.layoutManager = LinearLayoutManager(this)
         newsReadingActivity.news.adapter = newsAdapter
+        //newsReadingActivity.categories.layoutManager = LinearLayoutManager(this)
         newsReadingActivity.categories.adapter = categoryAdapter
         getCategories()
+        getNews("All")
+        newsReadingActivity.news.adapter = newsAdapter
+        //newsAdapter.notifyDataSetChanged()
 
     }
 
-    fun getCategories(){
+    private fun getCategories(){
         categoryModelArrayList.add(CategoryModel("All"
             ,"https://media.istockphoto.com/photos/colorful-abstract-collage-from-clippings-with-letters-and-numbers-picture-id1278583120?s=612x612"))
         categoryModelArrayList.add(CategoryModel("Technology"
@@ -68,10 +75,11 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
             ,"https://media.istockphoto.com/photos/the-musicians-were-playing-rock-music-on-stage-there-was-an-audience-picture-id1319479588?b=1&k=20&m=1319479588&s=170667a&w=0&h=bunblYyTDA_vnXu-nY4x4oa7ke6aiiZKntZ5mfr-4aM="))
         categoryModelArrayList.add(CategoryModel("Health"
             ,"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aGVhbHRofGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"))
-        categoryAdapter.notifyDataSetChanged()
+        newsReadingActivity.categories.adapter = categoryAdapter
+        //categoryAdapter.notifyDataSetChanged()
     }
 
-    fun getNews(category: String){
+    private fun getNews(category: String){
         newsReadingActivity.progressBarNews.visibility = View.VISIBLE
         articlesArrayList.clear()
         val categoryUrl = "https://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=62c30cc679014b5aa38c950005614e88"
@@ -88,9 +96,31 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
         } else {
             retrofitAPI.getAllNews(categoryUrl)
         }
-        /*call.enqueue(retrofit2.Callback<NewsModel>(){
 
-        })*/
+        doAsync {
+            call.enqueue(object : Callback<NewsModel> {
+                override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>){
+                    val newsModel: NewsModel? = response.body()
+                    newsReadingActivity.progressBarNews.visibility = View.GONE
+                    val articles: ArrayList<Articles> = newsModel!!.articles
+                    for (i in 0 until articles.size){
+                        articlesArrayList.add(
+                            Articles(
+                                articles[i].title,
+                                articles[i].description,
+                                articles[i].urlToImage,
+                                articles[i].url,
+                                articles[i].content))
+                    }
+                    newsReadingActivity.news.adapter = newsAdapter
+                    //newsAdapter.notifyDataSetChanged()
+                }
+                override fun onFailure(call: Call<NewsModel>?, t: Throwable?){
+                    Toast.makeText(this@NewsReadingActivity, "Failed to load News!!", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -115,7 +145,8 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
     }
 
     override fun onCategoryClick(position: Int) {
-
+        val category = categoryModelArrayList[position].category
+        getNews(category)
     }
 
 }
