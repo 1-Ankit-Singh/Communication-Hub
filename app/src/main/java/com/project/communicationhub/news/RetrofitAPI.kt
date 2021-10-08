@@ -1,15 +1,15 @@
 package com.project.communicationhub.news
 
-import retrofit2.Call
+/*import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Url
+import retrofit2.http.Url*/
 
 interface RetrofitAPI {
 
-    @GET
+    /*@GET
     fun getAllNews(@Url URL: String): Call<NewsModel>
 
     @GET
-    fun getNewsByCategory(@Url URL: String): Call<NewsModel>
+    fun getNewsByCategory(@Url URL: String): Call<NewsModel>*/
 
 }

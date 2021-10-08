@@ -6,23 +6,23 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.project.communicationhub.MainActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ActivityNewsReadingBinding
-import kotlinx.android.synthetic.main.activity_news_reading.*
-import org.jetbrains.anko.doAsync
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickInterface {
 
     // Initialising Variables
     private lateinit var newsReadingActivity: ActivityNewsReadingBinding
-    private lateinit var articlesArrayList: ArrayList<Articles>
-    private lateinit var categoryModelArrayList: ArrayList<CategoryModel>
+    private var articlesArrayList = arrayListOf<Articles>()
+    private var categoryModelArrayList = arrayListOf<CategoryModel>()
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var newsAdapter: NewsAdapter
 
@@ -37,24 +37,8 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
             supportActionBar!!.setDisplayShowTitleEnabled(true)
         }
 
-        articlesArrayList = ArrayList()
-        categoryModelArrayList = ArrayList()
-        newsAdapter = NewsAdapter(articlesArrayList, this)
-        categoryAdapter = CategoryAdapter(categoryModelArrayList, this
-            , object : CategoryAdapter.CategoryClickInterface{
-                override fun onCategoryClick(position: Int) {
-                    val category = categoryModelArrayList[position].category
-                    getNews(category)
-                }
-            }/*this@NewsReadingActivity as CategoryAdapter.CategoryClickInterface*/)
-        //newsReadingActivity.news.layoutManager = LinearLayoutManager(this)
-        newsReadingActivity.news.adapter = newsAdapter
-        //newsReadingActivity.categories.layoutManager = LinearLayoutManager(this)
-        newsReadingActivity.categories.adapter = categoryAdapter
-        getCategories()
         getNews("All")
-        newsReadingActivity.news.adapter = newsAdapter
-        //newsAdapter.notifyDataSetChanged()
+        getCategories()
 
     }
 
@@ -75,52 +59,65 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
             ,"https://media.istockphoto.com/photos/the-musicians-were-playing-rock-music-on-stage-there-was-an-audience-picture-id1319479588?b=1&k=20&m=1319479588&s=170667a&w=0&h=bunblYyTDA_vnXu-nY4x4oa7ke6aiiZKntZ5mfr-4aM="))
         categoryModelArrayList.add(CategoryModel("Health"
             ,"https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aGVhbHRofGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"))
-        newsReadingActivity.categories.adapter = categoryAdapter
+        newsReadingActivity.categories.adapter = CategoryAdapter(categoryModelArrayList, this
+            , object : CategoryAdapter.CategoryClickInterface{
+                override fun onCategoryClick(position: Int) {
+                    val category = categoryModelArrayList[position].category
+                    getNews(category) }
+            })
         //categoryAdapter.notifyDataSetChanged()
     }
 
     private fun getNews(category: String){
-        newsReadingActivity.progressBarNews.visibility = View.VISIBLE
         articlesArrayList.clear()
-        val categoryUrl = "https://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=62c30cc679014b5aa38c950005614e88"
-        //https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=published&language=en&apiKey=62c30cc679014b5aa38c950005614e88
-        val url = "https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=published&language=en&apiKey=62c30cc679014b5aa38c950005614e88"
-        val BASE_URL = "https://newsapi.org/"
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
-        val call: Call<NewsModel> = if(category == "All"){
-            retrofitAPI.getAllNews(url)
+        newsReadingActivity.progressBarNews.visibility = View.VISIBLE
+        val url = if (category != "All"){
+            "https://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=62c30cc679014b5aa38c950005614e88"
+
         } else {
-            retrofitAPI.getAllNews(categoryUrl)
+            "https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=published&language=en&apiKey=62c30cc679014b5aa38c950005614e88"
         }
-
-        doAsync {
-            call.enqueue(object : Callback<NewsModel> {
-                override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>){
-                    val newsModel: NewsModel? = response.body()
+        val requestQueue: RequestQueue = Volley.newRequestQueue(this)
+        val jsonObjectRequest: JsonObjectRequest =
+            object: JsonObjectRequest(Request.Method.GET, url, null, {
+                newsAdapter = NewsAdapter(articlesArrayList, this)
+                var jsonArray: JSONArray? = null
+                try {
+                    jsonArray = it.getJSONArray("articles")
+                    var articles: Articles =
+                        Articles(jsonArray.getJSONObject(0).get("description").toString()
+                            ,jsonArray.getJSONObject(0).get("title").toString()
+                            ,jsonArray.getJSONObject(0).get("content").toString()
+                            ,jsonArray.getJSONObject(0).get("urlToImage").toString()
+                            ,jsonArray.getJSONObject(0).get("url").toString())
                     newsReadingActivity.progressBarNews.visibility = View.GONE
-                    val articles: ArrayList<Articles> = newsModel!!.articles
-                    for (i in 0 until articles.size){
-                        articlesArrayList.add(
-                            Articles(
-                                articles[i].title,
-                                articles[i].description,
-                                articles[i].urlToImage,
-                                articles[i].url,
-                                articles[i].content))
+                    for (i in 0 until jsonArray.length()){
+                        val jsonObject: JSONObject = jsonArray.getJSONObject(i)
+                        val newsModel: Articles =
+                            Articles(jsonObject.get("title").toString()
+                                ,jsonObject.get("description").toString()
+                                ,jsonObject.get("content").toString()
+                                ,jsonObject.get("urlToImage").toString()
+                                ,jsonObject.get("url").toString())
+                        articlesArrayList.add(newsModel)
                     }
-                    newsReadingActivity.news.adapter = newsAdapter
-                    //newsAdapter.notifyDataSetChanged()
+                    newsReadingActivity.news.adapter = NewsAdapter(articlesArrayList, this)
+                } catch (e : JSONException){
+                    e.printStackTrace()
                 }
-                override fun onFailure(call: Call<NewsModel>?, t: Throwable?){
-                    Toast.makeText(this@NewsReadingActivity, "Failed to load News!!", Toast.LENGTH_SHORT).show()
+            }, {
+                /*if( it.networkResponse.statusCode == 403) {
+                    getNews(category)
+                }*/
+                Toast.makeText(this@NewsReadingActivity, "Failed to load News!! $it", Toast.LENGTH_SHORT).show()
+            }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["User-Agent"] = "Mozilla/5.0"
+                    return headers
                 }
-            })
-        }
-
+            }
+        requestQueue.add(jsonObjectRequest)
     }
 
     override fun onSupportNavigateUp(): Boolean {
