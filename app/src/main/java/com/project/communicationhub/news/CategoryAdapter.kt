@@ -12,7 +12,7 @@ class CategoryAdapter(
     private val categoryAdapterArrayList: ArrayList<CategoryModel>,
     val context: Context,
     private val categoryClickInterface: CategoryClickInterface
-) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+    ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var categoryAdapter = ItemCategoriesBinding.bind(itemView)

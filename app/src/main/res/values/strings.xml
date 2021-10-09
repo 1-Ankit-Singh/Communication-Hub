@@ -67,4 +67,15 @@
     <string name="sub_description">Sub-Description</string>
     <string name="content">Content</string>
     <string name="read_full_news">Read full news</string>
+    <string name="book_title">Book Title</string>
+    <string name="publisher">Publisher</string>
+    <string name="page_count">Page count</string>
+    <string name="date">Date</string>
+    <string name="search_here">Search Here</string>
+    <string name="number_of_pages">Number of Pages</string>
+    <string name="publish_date">Publish Date</string>
+    <string name="sub_title">Sub-Title</string>
+    <string name="description">Description</string>
+    <string name="buy">Buy</string>
+    <string name="preview">Preview</string>
 </resources>

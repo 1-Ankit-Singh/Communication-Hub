@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.project.communicationhub.adapters.ScreenSlidePagerAdapter
+import com.project.communicationhub.books.BookReadingActivity
 import com.project.communicationhub.databinding.ActivityMainBinding
 import com.project.communicationhub.interaction.ProfileActivity
 import com.project.communicationhub.news.NewsReadingActivity
@@ -59,6 +60,10 @@ class MainActivity : AppCompatActivity() {
                 newsReader()
                 true
             }
+            R.id.books -> {
+                booksReader()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -73,6 +78,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun newsReader() {
         startActivity(Intent(this, NewsReadingActivity::class.java))
+    }
+
+    private fun booksReader() {
+        startActivity(Intent(this, BookReadingActivity::class.java))
     }
 
 }

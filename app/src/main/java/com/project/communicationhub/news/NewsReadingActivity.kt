@@ -77,6 +77,7 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
             "https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=published&language=en&apiKey=62c30cc679014b5aa38c950005614e88"
         }
         val requestQueue: RequestQueue = Volley.newRequestQueue(this)
+        requestQueue.cache.clear()
         val jsonObjectRequest: JsonObjectRequest =
             object: JsonObjectRequest(Request.Method.GET, url, null, {
                 newsAdapter = NewsAdapter(articlesArrayList, this)
