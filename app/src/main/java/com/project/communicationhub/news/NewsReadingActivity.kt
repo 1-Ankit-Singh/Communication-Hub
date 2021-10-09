@@ -65,7 +65,6 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
                     val category = categoryModelArrayList[position].category
                     getNews(category) }
             })
-        //categoryAdapter.notifyDataSetChanged()
     }
 
     private fun getNews(category: String){
@@ -135,6 +134,7 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
     }
 
     override fun onBackPressed() {
+        articlesArrayList.clear()
         finish()
         startActivity(
             Intent(this, MainActivity::class.java)
