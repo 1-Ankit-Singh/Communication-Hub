@@ -19,11 +19,10 @@
 
             <ImageView
                 android:id="@+id/book"
-                android:layout_width="150dp"
-                android:layout_height="170dp"
+                android:layout_width="125dp"
+                android:layout_height="150dp"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/book_title"
-                android:scaleType="centerCrop"
                 android:src="@color/bluish_black" />
 
             <TextView
@@ -34,8 +33,9 @@
                 android:layout_toEndOf="@id/book"
                 android:padding="4dp"
                 android:text="@string/book_title"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textColor="@color/bluish_black"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/publisher"
@@ -46,8 +46,9 @@
                 android:layout_toEndOf="@id/book"
                 android:padding="4dp"
                 android:text="@string/publisher"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textColor="@color/bluish_black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pageCount"
@@ -58,8 +59,9 @@
                 android:layout_toEndOf="@id/book"
                 android:padding="4dp"
                 android:text="@string/page_count"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textColor="@color/bluish_black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/date"
@@ -70,8 +72,9 @@
                 android:layout_marginEnd="5dp"
                 android:padding="4dp"
                 android:text="@string/date"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textColor="@color/bluish_black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

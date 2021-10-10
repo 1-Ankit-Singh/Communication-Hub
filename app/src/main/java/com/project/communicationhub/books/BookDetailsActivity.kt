@@ -4,7 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ActivityBookDetailsBinding
@@ -61,7 +63,7 @@ class BookDetailsActivity : AppCompatActivity() {
         val delim = ":"
         val arr = previewLink.split(delim).toTypedArray()
         arr[0] = "https:"
-        val bookPreviewLink = "${arr[0]} + ${arr[1]}"
+        val bookPreviewLink = "${arr[0]}${arr[1]}"
 
         bookDetailsActivity.bookTitle.text = title
         bookDetailsActivity.bookSubTitle.text = subtitle
@@ -76,10 +78,7 @@ class BookDetailsActivity : AppCompatActivity() {
                 Toast.makeText(this, "No preview Link present!!", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                //startActivity(Intent(this, BookDetailsReadingActivity::class.java).putExtra("URL",bookPreviewLink))
-                val uri = Uri.parse(previewLink)
-                val i = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(i)
+                openBookPreview(bookPreviewLink, it)
             }
         }
 
@@ -97,6 +96,33 @@ class BookDetailsActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun openBookPreview(bookPreviewLink: String, view: View) {
+        //Instantiate builder variable
+        val builder = AlertDialog.Builder(view.context)
+        // set title
+        builder.setTitle("CLIQUE")
+        //set content area
+        builder.setMessage("Want to preview the book in: -")
+        //set negative button
+        builder.setPositiveButton(
+            "Browser") { dialog, id ->
+            val uri = Uri.parse(bookPreviewLink)
+            val i = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(i)
+        }
+        //set positive button
+        builder.setNegativeButton(
+            "App") { dialog, id ->
+            startActivity(Intent(this, BookDetailsReadingActivity::class.java)
+                .putExtra("URL",bookPreviewLink))
+        }
+        //set neutral button
+        builder.setNeutralButton("Cancel") {dialog, id->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 
     override fun onSupportNavigateUp(): Boolean {

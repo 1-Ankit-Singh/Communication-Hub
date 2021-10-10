@@ -19,7 +19,6 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-
 class BookReadingActivity : AppCompatActivity() {
 
     // Initializing Variables
@@ -38,7 +37,7 @@ class BookReadingActivity : AppCompatActivity() {
             supportActionBar!!.setDisplayShowTitleEnabled(true)
         }
 
-        getBooksInfo("all")
+        getBooksInfo("android")
 
         bookReadingActivity.searchBtn.setOnClickListener {
             if(bookReadingActivity.searchBooks.text.toString().isEmpty()){
@@ -53,10 +52,10 @@ class BookReadingActivity : AppCompatActivity() {
     private fun getBooksInfo(query: String) {
         bookInfoArrayList.clear()
         bookReadingActivity.progressBarBooks.visibility = View.VISIBLE
-        val url = if(query == "all"){
-            "https://www.googleapis.com/books/v1/volumes?q=books"
+        val url = if(query == "android"){
+            "https://www.googleapis.com/books/v1/volumes?q=android&key=AIzaSyDCk7OrRDv1Xyk8FJux1GNeuCf9RIJbEsk"
         } else {
-            "https://www.googleapis.com/books/v1/volumes?q=$query"
+            "https://www.googleapis.com/books/v1/volumes?q=$query&key=AIzaSyDCk7OrRDv1Xyk8FJux1GNeuCf9RIJbEsk"
         }
         val requestQueue: RequestQueue = Volley.newRequestQueue(this)
         requestQueue.cache.clear()
@@ -92,7 +91,7 @@ class BookReadingActivity : AppCompatActivity() {
                         val delim = ":"
                         val arr = thumbnail.split(delim).toTypedArray()
                         arr[0] = "https:"
-                        val bookThumbnail = "${arr[0]} + ${arr[1]}"
+                        val bookThumbnail = "${arr[0]}${arr[1]}"
                         val bookInfo = BookInfo(
                             title,
                             subtitle,

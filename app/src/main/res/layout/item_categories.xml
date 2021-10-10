@@ -28,11 +28,12 @@
 
             <TextView
                 android:id="@+id/categoryTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:paddingBottom="4dp"
+                android:padding="4dp"
+                android:background="@drawable/text_category_background"
                 android:text="@string/category"
                 android:textAlignment="center"
                 android:textColor="@color/white"
