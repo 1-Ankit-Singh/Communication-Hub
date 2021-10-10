@@ -78,4 +78,8 @@
     <string name="description">Description</string>
     <string name="buy">Buy</string>
     <string name="preview">Preview</string>
+    <string name="start">Start</string>
+    <string name="join">Join</string>
+    <string name="enter_the_security_code_here">Enter the security code here</string>
+    <string name="hint_video_call">Enter your security code with your friends to start video call. \nOR\nEnter the security the code provided by your friend to join video call</string>
 </resources>

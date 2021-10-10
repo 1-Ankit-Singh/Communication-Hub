@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
+            android:name=".GroupVideoCallingActivity"
+            android:exported="true" />
+        <activity
             android:name=".books.BookDetailsReadingActivity"
             android:exported="true" />
         <activity

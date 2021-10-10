@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                 booksReader()
                 true
             }
+            R.id.searchGroupVideoCall -> {
+                groupVideoCall()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -82,6 +86,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun booksReader() {
         startActivity(Intent(this, BookReadingActivity::class.java))
+    }
+
+    private fun groupVideoCall() {
+        startActivity(Intent(this, GroupVideoCallingActivity::class.java))
     }
 
 }

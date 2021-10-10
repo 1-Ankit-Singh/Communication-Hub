@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ActivityNewsDetailsBinding
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_news_reading.*
-import org.jetbrains.anko.internals.AnkoInternals.createAnkoContext
 
 const val TITLE = "title"
 const val CONTENT = "content"
