@@ -22,6 +22,9 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: NewsAdapter.ViewHolder, position: Int) {
+        /*val colors = context.resources.getIntArray(R.array.random_color)
+        val randomColor = colors[Random().nextInt(colors.size)]
+        holder.newsAdapter.viewColorTagNews.setBackgroundColor(randomColor)*/
         holder.newsAdapter.newsHeading.text = articlesArrayList[position].title
         holder.newsAdapter.newsSubHeading.text = articlesArrayList[position].description
         Picasso.get()

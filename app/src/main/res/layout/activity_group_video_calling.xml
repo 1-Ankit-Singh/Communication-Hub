@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/group_video_call_background"
     tools:context=".GroupVideoCallingActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -21,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-        app:title="Book Details" />
+        app:title="Group Video Call" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

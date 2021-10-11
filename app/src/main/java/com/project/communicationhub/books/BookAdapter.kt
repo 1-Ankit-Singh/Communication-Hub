@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ItemBookBinding
 import com.squareup.picasso.Picasso
+import java.util.*
 
 class BookAdapter(
     private val bookInfoArrayList: ArrayList<BookInfo>
@@ -24,6 +26,9 @@ class BookAdapter(
     }
 
     override fun onBindViewHolder(holder: BookAdapter.BookViewHolder, position: Int) {
+        val colors = context.resources.getIntArray(R.array.random_color)
+        val randomColor = colors[Random().nextInt(colors.size)]
+        holder.bookAdapter.viewColorTagBook.setBackgroundColor(randomColor)
         holder.bookAdapter.bookTitle.text = bookInfoArrayList[position].title
         holder.bookAdapter.publisher.text = bookInfoArrayList[position].publisher
         holder.bookAdapter.pageCount.text = "No. of Pages: ${bookInfoArrayList[position].pageCount}"

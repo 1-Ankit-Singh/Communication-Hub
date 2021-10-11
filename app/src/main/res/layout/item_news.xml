@@ -5,13 +5,18 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:elevation="2dp"
+        app:cardElevation="2dp"
         app:cardBackgroundColor="@color/gray_light"
         app:cardCornerRadius="8dp">
+
+        <!--<View
+            android:id="@+id/viewColorTagNews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/newsImage"
                 android:layout_margin="4dp"
-                android:maxLines="2"
                 android:ellipsize="end"
+                android:maxLines="2"
                 android:padding="4dp"
                 android:text="@string/news_heading"
                 android:textColor="@color/bluish_black"
@@ -45,13 +50,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/newsHeading"
                 android:layout_margin="4dp"
-                android:maxLines="3"
                 android:ellipsize="end"
+                android:maxLines="3"
                 android:padding="4dp"
                 android:text="@string/news_sub_heading"
                 android:textColor="@color/bluish_black" />
 
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>
