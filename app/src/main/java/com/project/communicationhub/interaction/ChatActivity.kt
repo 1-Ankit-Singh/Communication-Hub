@@ -74,6 +74,8 @@ class ChatActivity : AppCompatActivity() {
 
         chatAdapter = ChatAdapter(mutableItems, mCurrentUid)
 
+        mLinearLayout.reverseLayout = false
+        mLinearLayout.stackFromEnd = true
         msgRv.apply {
             layoutManager = mLinearLayout
             adapter = chatAdapter

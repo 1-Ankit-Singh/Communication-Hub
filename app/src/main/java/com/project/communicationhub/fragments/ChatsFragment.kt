@@ -35,7 +35,7 @@ class ChatsFragment : Fragment() {
     ): View? {
         chatsFragment = FragmentChatsBinding.inflate(inflater)
 
-        viewManager = LinearLayoutManager(requireContext())
+        viewManager = LinearLayoutManager(requireContext()/*, LinearLayoutManager.VERTICAL, true*/)
         setupAdapter()
 
         return chatsFragment.root
@@ -48,11 +48,12 @@ class ChatsFragment : Fragment() {
 
         val options = FirebaseRecyclerOptions.Builder<Inbox>()
             .setLifecycleOwner(viewLifecycleOwner)
-            .setQuery(baseQuery, Inbox::class.java)
+            .setQuery(baseQuery.orderByChild("time/time"), Inbox::class.java)
             .build()
 
         // Instantiate Paging Adapter
         mAdapter = object : FirebaseRecyclerAdapter<Inbox, ChatViewHolder>(options) {
+
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
                 val inflater = layoutInflater
                 return ChatViewHolder(inflater.inflate(R.layout.list_item, parent, false))

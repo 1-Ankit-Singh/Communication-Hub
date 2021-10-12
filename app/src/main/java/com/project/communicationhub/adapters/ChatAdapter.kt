@@ -64,6 +64,7 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         when (val item = list[position]) {
             is DateHeader -> {
                 holder.itemView.textView.text = item.date
