@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+//import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +24,8 @@ class ChatsFragment : Fragment() {
     // Initializing Variables
     private lateinit var chatsFragment: FragmentChatsBinding
     private lateinit var mAdapter: FirebaseRecyclerAdapter<Inbox, ChatViewHolder>
-    private lateinit var viewManager: RecyclerView.LayoutManager
+    //private lateinit var viewManager: RecyclerView.LayoutManager
+    private val mLinearLayout: LinearLayoutManager by lazy { LinearLayoutManager(requireContext()) }
     private val mDatabase = FirebaseDatabase.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
@@ -35,7 +36,9 @@ class ChatsFragment : Fragment() {
     ): View? {
         chatsFragment = FragmentChatsBinding.inflate(inflater)
 
-        viewManager = LinearLayoutManager(requireContext()/*, LinearLayoutManager.VERTICAL, true*/)
+        //viewManager = LinearLayoutManager(requireContext()/*, LinearLayoutManager.VERTICAL, true*/)
+        mLinearLayout.reverseLayout = true
+        mLinearLayout.stackFromEnd = true
         setupAdapter()
 
         return chatsFragment.root
@@ -85,7 +88,7 @@ class ChatsFragment : Fragment() {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
-            layoutManager = viewManager
+            layoutManager = mLinearLayout
             adapter = mAdapter
         }
     }

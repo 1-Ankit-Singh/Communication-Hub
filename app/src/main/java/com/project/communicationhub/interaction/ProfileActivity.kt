@@ -190,7 +190,7 @@ class ProfileActivity : AppCompatActivity() {
                 val delim = ":"
                 val arr = dob.split(delim).toTypedArray()
                 val userDob = arr[1]
-                Toast.makeText(this, "DOB: $userDob", Toast.LENGTH_LONG).show()
+                userDob.trim()
                 database.collection("users").document(auth.uid!!).update(
                     "name", name
                     ,"dob", userDob
