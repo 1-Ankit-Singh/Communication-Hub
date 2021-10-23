@@ -103,13 +103,14 @@ class NewsReadingActivity : AppCompatActivity(), CategoryAdapter.CategoryClickIn
                     }
                     newsReadingActivity.news.adapter = NewsAdapter(articlesArrayList, this)
                 } catch (e : JSONException){
-                    e.printStackTrace()
+                    //e.printStackTrace()
+                    Toast.makeText(this@NewsReadingActivity, "Failed to load News!!", Toast.LENGTH_SHORT).show()
                 }
             }, {
                 /*if( it.networkResponse.statusCode == 403) {
                     getNews(category)
                 }*/
-                Toast.makeText(this@NewsReadingActivity, "Failed to load News!! $it", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@NewsReadingActivity, "Failed to load News!!", Toast.LENGTH_SHORT).show()
             }) {
                 override fun getHeaders(): MutableMap<String, String> {
                     val headers = HashMap<String, String>()

@@ -114,13 +114,14 @@ class BookReadingActivity : AppCompatActivity() {
                     }
                     bookReadingActivity.booksList.adapter = BookAdapter(bookInfoArrayList, this)
                 } catch (e : JSONException){
-                    e.printStackTrace()
+                    //e.printStackTrace()
+                    Toast.makeText(this, "Failed to load Books!!", Toast.LENGTH_SHORT).show()
                 }
             }, {
                 /*if( it.networkResponse.statusCode == 403) {
                     getNews(category)
                 }*/
-                Toast.makeText(this, "Failed to load Books!! $it", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to load Books!!", Toast.LENGTH_SHORT).show()
             })
         requestQueue.add(jsonObjectRequest)
     }

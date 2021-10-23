@@ -107,19 +107,19 @@ class BookDetailsActivity : AppCompatActivity() {
         builder.setMessage("Want to preview the book in: -")
         //set negative button
         builder.setPositiveButton(
-            "Browser") { dialog, id ->
+            "Browser") { _, _ ->
             val uri = Uri.parse(bookPreviewLink)
             val i = Intent(Intent.ACTION_VIEW, uri)
             startActivity(i)
         }
         //set positive button
         builder.setNegativeButton(
-            "App") { dialog, id ->
+            "App") { _, _ ->
             startActivity(Intent(this, BookDetailsReadingActivity::class.java)
                 .putExtra("URL",bookPreviewLink))
         }
         //set neutral button
-        builder.setNeutralButton("Cancel") {dialog, id->
+        builder.setNeutralButton("Cancel") { dialog, _ ->
             dialog.dismiss()
         }
         builder.show()
