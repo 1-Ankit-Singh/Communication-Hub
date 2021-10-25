@@ -3,7 +3,10 @@ package com.project.communicationhub
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.project.communicationhub.databinding.ActivityGroupVideoCallingBinding
 import org.jitsi.meet.sdk.JitsiMeet
 import org.jitsi.meet.sdk.JitsiMeetActivity
@@ -16,6 +19,11 @@ class GroupVideoCallingActivity : AppCompatActivity() {
     // Initializing Variables
     private lateinit var groupVideoCallingActivity: ActivityGroupVideoCallingBinding
     private lateinit var url: URL
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseFirestore.getInstance()
+    private lateinit var name: String
+    private lateinit var dob: String
+    private lateinit var tokenCode:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,27 +44,59 @@ class GroupVideoCallingActivity : AppCompatActivity() {
                 .build()
             JitsiMeet.setDefaultConferenceOptions(defaultOptions)
         } catch (e: MalformedURLException) {
-            e.printStackTrace()
+            //e.printStackTrace()
+            Toast.makeText(this, "Something went wrong, try again!!", Toast.LENGTH_SHORT).show()
         }
 
-        groupVideoCallingActivity.startBtn.setOnClickListener {
-            val options: JitsiMeetConferenceOptions = JitsiMeetConferenceOptions.Builder()
-                .setRoom(groupVideoCallingActivity.codeBox.text.toString())
-                .setWelcomePageEnabled(false)
-                .build()
+        token()
 
-            JitsiMeetActivity.launch(this, options)
+        groupVideoCallingActivity.startBtn.setOnClickListener {
+            if (groupVideoCallingActivity.codeBox.text.trim().isNotEmpty()){
+                if (groupVideoCallingActivity.codeBox.text.trim() == tokenCode) {
+                    startGroupVideoCall()
+                } else {
+                    Toast.makeText(this, "Wrong code!!", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Please enter the code!!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         groupVideoCallingActivity.joinBtn.setOnClickListener {
-            val options: JitsiMeetConferenceOptions = JitsiMeetConferenceOptions.Builder()
-                .setRoom(groupVideoCallingActivity.codeBox.text.toString())
-                .setWelcomePageEnabled(false)
-                .build()
-
-            JitsiMeetActivity.launch(this, options)
+            if (groupVideoCallingActivity.codeBox.text.trim().isNotEmpty()) {
+                if (groupVideoCallingActivity.codeBox.text.trim().length > 10) {
+                    startGroupVideoCall()
+                } else {
+                    Toast.makeText(this, "Wrong code!!", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Please enter the code!!", Toast.LENGTH_SHORT).show()
+            }
         }
 
+    }
+
+    private fun token() {
+        database.collection("users").document(auth.uid!!).get().addOnSuccessListener {
+            if(it.exists()){
+                if(auth.uid == it.get("uid")){
+                    name = it.getString("name").toString()
+                    dob = it.getString("dob").toString()
+                    tokenCode = name+dob
+                }
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun startGroupVideoCall(){
+        val options: JitsiMeetConferenceOptions = JitsiMeetConferenceOptions.Builder()
+            .setRoom(groupVideoCallingActivity.codeBox.text.toString())
+            .setWelcomePageEnabled(false)
+            .build()
+
+        JitsiMeetActivity.launch(this, options)
     }
 
     override fun onSupportNavigateUp(): Boolean {
