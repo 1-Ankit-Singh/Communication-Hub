@@ -72,7 +72,7 @@ class ChatActivity : AppCompatActivity() {
                 currentUser = it.toObject(User::class.java)!!
             }
 
-        chatAdapter = ChatAdapter(mutableItems, mCurrentUid)
+        chatAdapter = ChatAdapter(mutableItems, mCurrentUid, this)
 
         mLinearLayout.reverseLayout = false
         mLinearLayout.stackFromEnd = true

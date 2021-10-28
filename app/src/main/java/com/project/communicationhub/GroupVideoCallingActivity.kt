@@ -21,8 +21,8 @@ class GroupVideoCallingActivity : AppCompatActivity() {
     private lateinit var url: URL
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
-    private lateinit var name: String
-    private lateinit var dob: String
+    private lateinit var appName: String
+    private lateinit var phoneNumber: String
     private lateinit var tokenCode:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,11 +51,11 @@ class GroupVideoCallingActivity : AppCompatActivity() {
         token()
 
         groupVideoCallingActivity.startBtn.setOnClickListener {
-            if (groupVideoCallingActivity.codeBox.text.trim().isNotEmpty()){
-                if (groupVideoCallingActivity.codeBox.text.trim() == tokenCode) {
+            if (groupVideoCallingActivity.codeBox.text.trim().toString().isNotEmpty()){
+                if (groupVideoCallingActivity.codeBox.text.trim().toString() == tokenCode) {
                     startGroupVideoCall()
                 } else {
-                    Toast.makeText(this, "Wrong code!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Invalid code!!", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Please enter the code!!", Toast.LENGTH_SHORT).show()
@@ -63,11 +63,13 @@ class GroupVideoCallingActivity : AppCompatActivity() {
         }
 
         groupVideoCallingActivity.joinBtn.setOnClickListener {
-            if (groupVideoCallingActivity.codeBox.text.trim().isNotEmpty()) {
-                if (groupVideoCallingActivity.codeBox.text.trim().length > 10) {
+            if (groupVideoCallingActivity.codeBox.text.trim().toString().isNotEmpty()) {
+                if (groupVideoCallingActivity.codeBox.text.trim().toString().length == 19
+                    && groupVideoCallingActivity.codeBox.text.trim().toString().startsWith("Clique+91")
+                    && groupVideoCallingActivity.codeBox.text.trim().toString() != tokenCode) {
                     startGroupVideoCall()
                 } else {
-                    Toast.makeText(this, "Wrong code!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Invalid code!!", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Please enter the code!!", Toast.LENGTH_SHORT).show()
@@ -80,9 +82,9 @@ class GroupVideoCallingActivity : AppCompatActivity() {
         database.collection("users").document(auth.uid!!).get().addOnSuccessListener {
             if(it.exists()){
                 if(auth.uid == it.get("uid")){
-                    name = it.getString("name").toString()
-                    dob = it.getString("dob").toString()
-                    tokenCode = name+dob
+                    appName = "Clique"
+                    phoneNumber = it.getString("phoneNumber").toString()
+                    tokenCode = appName+phoneNumber
                 }
             }
         }.addOnFailureListener {
