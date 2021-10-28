@@ -1,5 +1,6 @@
 package com.project.communicationhub.interaction
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -76,6 +77,14 @@ class OthersProfileActivity : AppCompatActivity() {
         startActivity(
             Intent(this, MainActivity::class.java)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+    }
+
+    companion object {
+        fun createOthersProfileActivity(context: Context, id: String): Intent {
+            val intent = Intent(context, OthersProfileActivity::class.java)
+            intent.putExtra(ID, id)
+            return intent
+        }
     }
 
 }

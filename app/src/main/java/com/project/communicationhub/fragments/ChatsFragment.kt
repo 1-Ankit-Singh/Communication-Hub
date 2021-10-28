@@ -1,5 +1,6 @@
 package com.project.communicationhub.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -67,7 +68,7 @@ class ChatsFragment : Fragment() {
                 position: Int,
                 inbox: Inbox
             ) {
-                viewHolder.bind(inbox) { name: String, photo: String, id: String ->
+                viewHolder.bind(inbox) { name: String, photo: String, id: String, _: Context ->
                     startActivity(
                         ChatActivity.createChatActivity(
                             requireContext(),

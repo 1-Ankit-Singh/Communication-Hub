@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/group_video_call_background"
-    tools:context=".GroupVideoCallingActivity">
+    tools:context=".interaction.GroupVideoCallingActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarGroupVideoCall"

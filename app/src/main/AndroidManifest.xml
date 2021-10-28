@@ -14,8 +14,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
+        <activity android:name=".interaction.HelpActivity"
+            android:exported="true" />
         <activity
-            android:name=".GroupVideoCallingActivity"
+            android:name=".interaction.GroupVideoCallingActivity"
             android:exported="true" />
         <activity
             android:name=".books.BookDetailsReadingActivity"

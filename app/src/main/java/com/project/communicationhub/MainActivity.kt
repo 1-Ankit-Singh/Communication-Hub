@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.project.communicationhub.adapters.ScreenSlidePagerAdapter
 import com.project.communicationhub.books.BookReadingActivity
 import com.project.communicationhub.databinding.ActivityMainBinding
+import com.project.communicationhub.interaction.GroupVideoCallingActivity
+import com.project.communicationhub.interaction.HelpActivity
 import com.project.communicationhub.interaction.ProfileActivity
 import com.project.communicationhub.news.NewsReadingActivity
 import com.project.communicationhub.todolist.ToDoActivity
@@ -68,6 +70,10 @@ class MainActivity : AppCompatActivity() {
                 groupVideoCall()
                 true
             }
+            R.id.help -> {
+                help()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -90,6 +96,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun groupVideoCall() {
         startActivity(Intent(this, GroupVideoCallingActivity::class.java))
+    }
+
+    private fun help(){
+        startActivity(Intent(this, HelpActivity::class.java))
     }
 
 }

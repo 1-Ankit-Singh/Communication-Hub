@@ -1,4 +1,4 @@
-package com.project.communicationhub
+package com.project.communicationhub.interaction
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.project.communicationhub.MainActivity
+import com.project.communicationhub.R
 import com.project.communicationhub.databinding.ActivityGroupVideoCallingBinding
 import org.jitsi.meet.sdk.JitsiMeet
 import org.jitsi.meet.sdk.JitsiMeetActivity
@@ -108,7 +110,7 @@ class GroupVideoCallingActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home  -> {
+            R.id.home -> {
                 onBackPressed()
             }
         }

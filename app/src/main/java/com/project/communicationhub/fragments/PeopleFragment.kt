@@ -1,5 +1,6 @@
 package com.project.communicationhub.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -89,7 +90,7 @@ class PeopleFragment : Fragment() {
                         currentList?.snapshot()?.removeAt(position)
                         notifyItemRemoved(position)
                     } else{
-                        viewHolder.bind(user) { name: String, photo: String, id: String ->
+                        viewHolder.bind(user) { name: String, photo: String, id: String, _:Context ->
 
                             startActivity(
                                 ChatActivity.createChatActivity(

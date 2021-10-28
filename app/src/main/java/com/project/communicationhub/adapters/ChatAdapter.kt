@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.list_item_chat_recv_message.view.*
 import kotlinx.android.synthetic.main.list_item_date_header.view.*
 import android.content.ClipData
 import android.content.ClipboardManager
-
+import kotlinx.android.synthetic.main.list_item_chat_recv_message.view.content
+import kotlinx.android.synthetic.main.list_item_chat_recv_message.view.highFiveImg
+import kotlinx.android.synthetic.main.list_item_chat_recv_message.view.time
 
 class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurrentUser: String, private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -69,7 +71,6 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         when (val item = list[position]) {
             is DateHeader -> {
                 holder.itemView.textView.text = item.date
@@ -84,7 +85,6 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
                             override fun onDoubleClick(v: View?) {
                                 highFiveClick?.invoke(item.msgId, !item.liked)
                             }
-
                             override fun onLongClick(v: View?) {
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE)
                                         as ClipboardManager
@@ -103,6 +103,25 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
                         }
                     }
                     TEXT_MESSAGE_SENT -> {
+                        holder.itemView.setOnClickListener (object :
+                            DoubleClickListener() {
+                            override fun onDoubleClick(v: View?) {
+                                val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE)
+                                        as ClipboardManager
+                                val clipData = ClipData.newPlainText("text"
+                                    , holder.itemView.content.text.toString())
+                                clipboard.setPrimaryClip(clipData)
+                                Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_LONG).show()
+                            }
+                            override fun onLongClick(v: View?) {
+                                val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE)
+                                        as ClipboardManager
+                                val clipData = ClipData.newPlainText("text"
+                                    , holder.itemView.content.text.toString())
+                                clipboard.setPrimaryClip(clipData)
+                                Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_LONG).show()
+                            }
+                        })
                         holder.itemView.highFiveImg.apply {
                             isVisible = item.liked
                         }
@@ -150,6 +169,6 @@ abstract class DoubleClickListener : View.OnClickListener {
 
     companion object {
         private const val DOUBLE_CLICK_TIME_DELTA: Long = 300 //milliseconds
-        private const val Long_CLICK_TIME_DELTA: Long = 300 //milliseconds
+        //private const val Long_CLICK_TIME_DELTA: Long = 300 //milliseconds
     }
 }

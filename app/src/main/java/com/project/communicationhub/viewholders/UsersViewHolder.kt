@@ -1,17 +1,17 @@
 package com.project.communicationhub.viewholders
 
+import android.content.Context
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.project.communicationhub.R
+import com.project.communicationhub.interaction.OthersProfileActivity
 import com.project.communicationhub.models.User
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(user: User, onClick: (name: String, photo: String, id: String) -> Unit) =
+    fun bind(user: User, onClick: (name: String, photo: String, id: String, context: Context) -> Unit) =
         with(itemView) {
             countTv.isVisible = false
             timeTv.isVisible = false
@@ -23,10 +23,15 @@ class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 .error(R.drawable.defaultavatar)
                 .into(userImgView)
             userImgView.setOnClickListener {
-                onClick.invoke(user.name, user.thumbImage, user.uid)
+                //onClick.invoke(user.name, user.thumbImage, user.uid)
+                context.startActivity(
+                    OthersProfileActivity.createOthersProfileActivity(
+                        context, user.uid
+                    )
+                )
             }
             setOnClickListener {
-                onClick.invoke(user.name, user.thumbImage, user.uid)
+                onClick.invoke(user.name, user.thumbImage, user.uid, context)
             }
         }
 }
