@@ -25,8 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbarNews"
-        android:orientation="horizontal"
         android:layout_margin="8dp"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_categories" />
 
@@ -35,9 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/categories"
+        android:layout_margin="8dp"
         android:layout_marginTop="5dp"
         android:orientation="vertical"
-        android:layout_margin="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:ignore="SpeakableTextPresentCheck"
         tools:listitem="@layout/item_news" />

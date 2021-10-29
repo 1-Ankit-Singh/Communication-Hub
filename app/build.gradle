@@ -19,7 +19,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
@@ -63,7 +63,7 @@ dependencies {
     implementation "androidx.room:room-ktx:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
 
-    implementation ('org.jitsi.react:jitsi-meet-sdk:3.+') { transitive = true }
+    implementation('org.jitsi.react:jitsi-meet-sdk:3.+') { transitive = true }
 
     //implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

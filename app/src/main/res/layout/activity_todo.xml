@@ -7,27 +7,27 @@
     tools:context=".todolist.ToDoActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
         android:id="@+id/toolbarToDo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
         android:background="?attr/colorPrimary"
+        android:elevation="10dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         app:contentInsetStartWithNavigation="0dp"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-        android:theme="@style/AppTheme.AppBarOverlay"
         app:title="Time Table" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/toolbarToDo"
         android:id="@+id/todoRv"
-        tools:itemCount="3"
-        android:padding="8dp"
-        tools:listitem="@layout/item_todo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarToDo"
+        android:padding="8dp"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_todo" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openNewTaskFab"
@@ -41,8 +41,8 @@
         android:layout_marginBottom="32dp"
         android:background="@color/baby_pink"
         android:backgroundTint="@color/baby_pink"
-        android:src="@drawable/ic_add_white_24dp"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
-        android:contentDescription="@drawable/ic_add_white_24dp" />
+        android:contentDescription="@drawable/ic_add"
+        android:src="@drawable/ic_add"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
 </RelativeLayout>

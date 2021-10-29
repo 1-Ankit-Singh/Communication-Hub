@@ -8,24 +8,24 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
         android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+        android:elevation="10dp"
         android:theme="@style/AppTheme.AppBarOverlay"
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
         app:title="CLIQUE" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
-        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:elevation="10dp"
         app:tabIndicatorColor="@android:color/white"
-        app:tabTextColor="@color/bluish_gray"
-        app:tabSelectedTextColor="@android:color/white">
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@color/bluish_gray">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

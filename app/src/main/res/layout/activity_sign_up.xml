@@ -71,9 +71,10 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/edit_text_background"
                     android:drawableStart="@drawable/ic_person"
                     android:drawablePadding="8dp"
-                    android:background="@drawable/edit_text_background"
+                    android:elevation="2dp"
                     android:hint="@string/type_your_name_here"
                     android:imeActionLabel="Send"
                     android:imeOptions="actionUnspecified"
@@ -82,7 +83,6 @@
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="20sp"
-                    android:elevation="2dp"
                     tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
                 <EditText
@@ -93,19 +93,19 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/edit_text_background"
                     android:drawableStart="@drawable/ic_date"
                     android:drawablePadding="8dp"
-                    android:background="@drawable/edit_text_background"
+                    android:elevation="2dp"
+                    android:focusable="false"
                     android:hint="@string/select_your_dob_here"
                     android:imeActionLabel="Send"
                     android:imeOptions="actionUnspecified"
                     android:inputType="date"
-                    android:focusable="false"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="20sp"
-                    android:elevation="2dp"
                     tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
                 <TextView
@@ -116,11 +116,11 @@
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/edit_text_background"
+                    android:elevation="2dp"
+                    android:padding="8dp"
                     android:text="@string/gender"
                     android:textColor="@color/black"
-                    android:padding="8dp"
-                    android:elevation="2dp"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <RadioGroup
                     android:id="@+id/gender"
@@ -137,9 +137,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/edit_text_background"
+                        android:elevation="2dp"
                         android:text="@string/male"
                         android:textSize="16sp"
-                        android:elevation="2dp"
                         tools:ignore="TextContrastCheck" />
 
                     <RadioButton
@@ -150,9 +150,9 @@
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/edit_text_background"
+                        android:elevation="2dp"
                         android:text="@string/female"
                         android:textSize="16sp"
-                        android:elevation="2dp"
                         tools:ignore="TextContrastCheck" />
 
                     <RadioButton
@@ -161,9 +161,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/edit_text_background"
+                        android:elevation="2dp"
                         android:text="@string/others"
                         android:textSize="16sp"
-                        android:elevation="2dp"
                         tools:ignore="TextContrastCheck" />
                 </RadioGroup>
 

@@ -34,7 +34,7 @@ class PeopleFragment : Fragment() {
     private lateinit var mAdapter: FirestorePagingAdapter<User, RecyclerView.ViewHolder>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private val database = FirebaseFirestore.getInstance().collection("users")
-            .orderBy("name", Query.Direction.ASCENDING)
+        .orderBy("name", Query.Direction.ASCENDING)
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
@@ -89,8 +89,8 @@ class PeopleFragment : Fragment() {
                     if (auth.uid == user.uid) {
                         currentList?.snapshot()?.removeAt(position)
                         notifyItemRemoved(position)
-                    } else{
-                        viewHolder.bind(user) { name: String, photo: String, id: String, _:Context ->
+                    } else {
+                        viewHolder.bind(user) { name: String, photo: String, id: String, _: Context ->
 
                             startActivity(
                                 ChatActivity.createChatActivity(
@@ -121,9 +121,12 @@ class PeopleFragment : Fragment() {
 
             override fun onLoadingStateChanged(state: LoadingState) {
                 when (state) {
-                    LoadingState.LOADING_INITIAL -> { }
-                    LoadingState.LOADING_MORE -> { }
-                    LoadingState.LOADED -> { }
+                    LoadingState.LOADING_INITIAL -> {
+                    }
+                    LoadingState.LOADING_MORE -> {
+                    }
+                    LoadingState.LOADED -> {
+                    }
                     LoadingState.ERROR -> {
                         Toast.makeText(
                             requireContext(),
@@ -131,7 +134,8 @@ class PeopleFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                    LoadingState.FINISHED -> { }
+                    LoadingState.FINISHED -> {
+                    }
                 }
             }
 

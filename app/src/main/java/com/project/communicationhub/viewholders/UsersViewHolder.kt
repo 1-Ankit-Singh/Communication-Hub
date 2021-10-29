@@ -11,7 +11,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(user: User, onClick: (name: String, photo: String, id: String, context: Context) -> Unit) =
+    fun bind(
+        user: User,
+        onClick: (name: String, photo: String, id: String, context: Context) -> Unit
+    ) =
         with(itemView) {
             countTv.isVisible = false
             timeTv.isVisible = false

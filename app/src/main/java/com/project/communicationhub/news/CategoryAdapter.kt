@@ -12,11 +12,12 @@ class CategoryAdapter(
     private val categoryAdapterArrayList: ArrayList<CategoryModel>,
     val context: Context,
     private val categoryClickInterface: CategoryClickInterface
-    ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var categoryAdapter = ItemCategoriesBinding.bind(itemView)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
         val adapter = ItemCategoriesBinding.inflate(LayoutInflater.from(parent.context))
         return ViewHolder(adapter.root)
@@ -36,7 +37,7 @@ class CategoryAdapter(
         return categoryAdapterArrayList.size
     }
 
-    interface CategoryClickInterface{
+    interface CategoryClickInterface {
         fun onCategoryClick(position: Int)
     }
 

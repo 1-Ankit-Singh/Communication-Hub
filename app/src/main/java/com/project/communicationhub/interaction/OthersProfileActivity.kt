@@ -39,13 +39,16 @@ class OthersProfileActivity : AppCompatActivity() {
 
     private fun viewData() {
         database.collection("users").document(friendId).get().addOnSuccessListener {
-            if(it.exists()){
-                if(friendId == it.get("uid")){
+            if (it.exists()) {
+                if (friendId == it.get("uid")) {
                     othersProfileActivity.otherName.text = it.getString("name").toString()
                     othersProfileActivity.otherDob.text = "DOB: " + it.getString("dob").toString()
-                    othersProfileActivity.otherStatus.editText?.setText(it.getString("status").toString())
+                    othersProfileActivity.otherStatus.editText?.setText(
+                        it.getString("status").toString()
+                    )
                     othersProfileActivity.otherStatusDetail.hint = "Your status"
-                    othersProfileActivity.otherGenderDetails.text = "Gender: " + it.getString("gender").toString()
+                    othersProfileActivity.otherGenderDetails.text =
+                        "Gender: " + it.getString("gender").toString()
                     val userImgUrl = it.getString("imageUrl").toString()
                     Picasso.get()
                         .load(userImgUrl)
@@ -55,7 +58,8 @@ class OthersProfileActivity : AppCompatActivity() {
                 }
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -76,7 +80,8 @@ class OthersProfileActivity : AppCompatActivity() {
         finish()
         startActivity(
             Intent(this, MainActivity::class.java)
-            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
     companion object {

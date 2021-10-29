@@ -25,6 +25,7 @@ class ChatsFragment : Fragment() {
     // Initializing Variables
     private lateinit var chatsFragment: FragmentChatsBinding
     private lateinit var mAdapter: FirebaseRecyclerAdapter<Inbox, ChatViewHolder>
+
     //private lateinit var viewManager: RecyclerView.LayoutManager
     private val mLinearLayout: LinearLayoutManager by lazy { LinearLayoutManager(requireContext()) }
     private val mDatabase = FirebaseDatabase.getInstance()

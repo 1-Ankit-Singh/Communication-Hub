@@ -46,7 +46,7 @@ class BookDetailsReadingActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home  -> {
+            R.id.home -> {
                 onBackPressed()
             }
         }

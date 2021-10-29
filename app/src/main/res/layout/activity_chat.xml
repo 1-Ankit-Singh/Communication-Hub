@@ -38,13 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:clickable="true"
             android:ellipsize="end"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:lines="1"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:textStyle="bold"
             tools:text="Ankit Singh" />
     </com.google.android.material.appbar.MaterialToolbar>
@@ -81,8 +81,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:backgroundTint="@color/gray_light"
             android:layout_toStartOf="@id/sendBtn"
+            android:backgroundTint="@color/gray_light"
             app:cardCornerRadius="30dp">
 
             <RelativeLayout
@@ -98,8 +98,8 @@
                     android:layout_marginEnd="10dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:focusable="true"
                     android:contentDescription="@drawable/ic_chat_icons_smile"
+                    android:focusable="true"
                     android:src="@drawable/ic_chat_icons_smile"
                     tools:ignore="TouchTargetSizeCheck" />
 

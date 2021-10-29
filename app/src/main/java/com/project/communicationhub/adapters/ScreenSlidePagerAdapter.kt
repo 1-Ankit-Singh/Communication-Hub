@@ -11,7 +11,7 @@ class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     override fun getItemCount(): Int = numPages
 
-    override fun createFragment(position: Int): Fragment = when(position){
+    override fun createFragment(position: Int): Fragment = when (position) {
         0 -> ChatsFragment()
         else -> PeopleFragment()
     }

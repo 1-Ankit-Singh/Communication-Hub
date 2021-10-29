@@ -107,16 +107,20 @@ class BookDetailsActivity : AppCompatActivity() {
         builder.setMessage("Want to preview the book in: -")
         //set negative button
         builder.setPositiveButton(
-            "Browser") { _, _ ->
+            "Browser"
+        ) { _, _ ->
             val uri = Uri.parse(bookPreviewLink)
             val i = Intent(Intent.ACTION_VIEW, uri)
             startActivity(i)
         }
         //set positive button
         builder.setNegativeButton(
-            "App") { _, _ ->
-            startActivity(Intent(this, BookDetailsReadingActivity::class.java)
-                .putExtra("URL",bookPreviewLink))
+            "App"
+        ) { _, _ ->
+            startActivity(
+                Intent(this, BookDetailsReadingActivity::class.java)
+                    .putExtra("URL", bookPreviewLink)
+            )
         }
         //set neutral button
         builder.setNeutralButton("Cancel") { dialog, _ ->
@@ -132,7 +136,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home  -> {
+            R.id.home -> {
                 onBackPressed()
             }
         }

@@ -131,8 +131,10 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun viewProfile() {
-        startActivity(Intent(this, OthersProfileActivity::class.java)
-            .putExtra(ID,friendId))
+        startActivity(
+            Intent(this, OthersProfileActivity::class.java)
+                .putExtra(ID, friendId)
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -150,8 +152,10 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java)
-            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        startActivity(
+            Intent(this, MainActivity::class.java)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
     private fun updateReadCount() {
@@ -201,10 +205,12 @@ class ChatActivity : AppCompatActivity() {
                     val msg = data.getValue(Message::class.java)!!
                     newMsg(msg, true)
                 }
+
                 override fun onChildAdded(data: DataSnapshot, p1: String?) {
                     val msg = data.getValue(Message::class.java)!!
                     newMsg(msg, false)
                 }
+
                 override fun onChildRemoved(p0: DataSnapshot) {}
             })
     }
@@ -232,7 +238,8 @@ class ChatActivity : AppCompatActivity() {
         )
 
         getInbox(mCurrentUid, friendId).setValue(inboxMap).addOnSuccessListener {
-            getInbox(friendId, mCurrentUid).addListenerForSingleValueEvent(object : ValueEventListener{
+            getInbox(friendId, mCurrentUid).addListenerForSingleValueEvent(object :
+                ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val value = snapshot.getValue(Inbox::class.java)

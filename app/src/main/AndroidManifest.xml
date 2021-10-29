@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".interaction.HelpActivity"
+        <activity
+            android:name=".interaction.HelpActivity"
             android:exported="true" />
         <activity
             android:name=".interaction.GroupVideoCallingActivity"
@@ -38,13 +39,13 @@
             android:name=".news.NewsReadingActivity"
             android:exported="true" />
         <activity
-            android:name=".interaction.OthersProfileActivity"
-            android:exported="true" />
-        <activity
             android:name=".todolist.TaskActivity"
             android:exported="true" />
         <activity
             android:name=".todolist.ToDoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".interaction.OthersProfileActivity"
             android:exported="true" />
         <activity
             android:name=".interaction.ProfileActivity"

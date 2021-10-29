@@ -24,10 +24,10 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="5"
         android:layout_below="@id/toolbarBooks"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
         <EditText
             android:id="@+id/searchBooks"
@@ -62,9 +62,9 @@
 
     <ProgressBar
         android:id="@+id/progressBarBooks"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

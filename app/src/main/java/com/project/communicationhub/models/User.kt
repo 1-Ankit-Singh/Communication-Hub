@@ -16,6 +16,25 @@ data class User(
     constructor() :
             this("", "", "", "", "", "", "", "", "Hey There, I am using CLIQUE", false)
 
-    constructor(name: String, imageUrl: String, thumbImage: String, uid: String, dob: String, gender: String, phoneNumber: String) :
-            this(name = name, imageUrl = imageUrl, thumbImage = thumbImage, uid = uid, dob = dob, gender = gender, phoneNumber = phoneNumber, "", status = "Hey There, I am using CLIQUE", online = false)
+    constructor(
+        name: String,
+        imageUrl: String,
+        thumbImage: String,
+        uid: String,
+        dob: String,
+        gender: String,
+        phoneNumber: String
+    ) :
+            this(
+                name = name,
+                imageUrl = imageUrl,
+                thumbImage = thumbImage,
+                uid = uid,
+                dob = dob,
+                gender = gender,
+                phoneNumber = phoneNumber,
+                "",
+                status = "Hey There, I am using CLIQUE",
+                online = false
+            )
 }

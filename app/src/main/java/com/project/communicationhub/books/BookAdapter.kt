@@ -12,11 +12,10 @@ import com.squareup.picasso.Picasso
 import java.util.*
 
 class BookAdapter(
-    private val bookInfoArrayList: ArrayList<BookInfo>
-    , val context: Context
-    ): RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+    private val bookInfoArrayList: ArrayList<BookInfo>, val context: Context
+) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
-    class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var bookAdapter = ItemBookBinding.bind(itemView)
     }
 
@@ -36,16 +35,16 @@ class BookAdapter(
         Picasso.get().load(bookInfoArrayList[position].thumbnail).into(holder.bookAdapter.book)
         holder.itemView.setOnClickListener {
             val intent = Intent(context, BookDetailsActivity::class.java)
-            intent.putExtra("title",bookInfoArrayList[position].title)
-            intent.putExtra("subtitle",bookInfoArrayList[position].subtitle)
-            intent.putExtra("publisher",bookInfoArrayList[position].publisher)
-            intent.putExtra("publishedDate",bookInfoArrayList[position].publishedDate)
-            intent.putExtra("description",bookInfoArrayList[position].description)
-            intent.putExtra("pageCount",bookInfoArrayList[position].pageCount)
-            intent.putExtra("thumbnail",bookInfoArrayList[position].thumbnail)
-            intent.putExtra("previewLink",bookInfoArrayList[position].previewLink)
-            intent.putExtra("infoLink",bookInfoArrayList[position].infoLink)
-            intent.putExtra("buyLink",bookInfoArrayList[position].buyLink)
+            intent.putExtra("title", bookInfoArrayList[position].title)
+            intent.putExtra("subtitle", bookInfoArrayList[position].subtitle)
+            intent.putExtra("publisher", bookInfoArrayList[position].publisher)
+            intent.putExtra("publishedDate", bookInfoArrayList[position].publishedDate)
+            intent.putExtra("description", bookInfoArrayList[position].description)
+            intent.putExtra("pageCount", bookInfoArrayList[position].pageCount)
+            intent.putExtra("thumbnail", bookInfoArrayList[position].thumbnail)
+            intent.putExtra("previewLink", bookInfoArrayList[position].previewLink)
+            intent.putExtra("infoLink", bookInfoArrayList[position].infoLink)
+            intent.putExtra("buyLink", bookInfoArrayList[position].buyLink)
             context.startActivity(intent)
         }
     }

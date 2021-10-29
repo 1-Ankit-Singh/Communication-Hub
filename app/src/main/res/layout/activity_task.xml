@@ -15,22 +15,23 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarAddTask"
-            app:title="New Task"
-            android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
+            android:elevation="10dp"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp"
             app:navigationIcon="?attr/homeAsUpIndicator"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="New Task" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,21 +49,21 @@
                 tools:ignore="TextContrastCheck" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleInpLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:id="@+id/titleInpLay"
-                app:hintTextColor="@color/baby_pink"
-                app:boxStrokeColor="@color/baby_pink"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:boxStrokeColor="@color/baby_pink"
+                app:hintTextColor="@color/baby_pink">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_task_title"
-                    android:paddingStart="8dp"
                     android:inputType="textCapWords"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,21 +79,21 @@
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/taskInpLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:hintTextColor="@color/baby_pink"
-                app:boxStrokeColor="@color/baby_pink"
                 android:layout_marginEnd="16dp"
-                android:id="@+id/taskInpLay"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:boxStrokeColor="@color/baby_pink"
+                app:hintTextColor="@color/baby_pink">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="start"
                     android:hint="@string/enter_your_task"
                     android:lines="3"
-                    android:gravity="start"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textSize="18sp" />
@@ -112,49 +113,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:hintTextColor="@color/baby_pink"
-                app:boxStrokeColor="@color/baby_pink"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:boxStrokeColor="@color/baby_pink"
+                app:hintTextColor="@color/baby_pink">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dateEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/set_date"
                     android:clickable="true"
-                    android:id="@+id/dateEdt"
                     android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_date_range"
                     android:drawablePadding="8dp"
-                    android:drawableEnd="@drawable/ic_date_range_black_24dp"
                     android:drawableTint="@color/baby_pink"
                     android:focusable="false"
+                    android:hint="@string/set_date"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/timeInptLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                app:hintTextColor="@color/baby_pink"
-                app:boxStrokeColor="@color/baby_pink"
+                android:layout_marginBottom="16dp"
                 android:visibility="gone"
-                android:id="@+id/timeInptLay"
-                android:layout_marginBottom="16dp">
+                app:boxStrokeColor="@color/baby_pink"
+                app:hintTextColor="@color/baby_pink">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/timeEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/set_time"
                     android:clickable="true"
-                    android:id="@+id/timeEdt"
                     android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_access_time"
                     android:drawablePadding="8dp"
-                    android:drawableEnd="@drawable/ic_access_time_black_24dp"
                     android:drawableTint="@color/baby_pink"
                     android:focusable="false"
+                    android:hint="@string/set_time"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textSize="18sp" />
@@ -163,11 +164,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp" >
+                android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/spinnerCategory"
@@ -181,10 +182,10 @@
                     android:id="@+id/imgAddCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_playlist_add_black_24dp"
-                    android:background="@color/baby_pink"
                     android:layout_marginTop="10dp"
-                    android:contentDescription="@drawable/ic_playlist_add_black_24dp" />
+                    android:background="@color/baby_pink"
+                    android:contentDescription="@drawable/ic_playlist_add"
+                    android:src="@drawable/ic_playlist_add" />
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton

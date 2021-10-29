@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, GroupVideoCallingActivity::class.java))
     }
 
-    private fun help(){
+    private fun help() {
         startActivity(Intent(this, HelpActivity::class.java))
     }
 

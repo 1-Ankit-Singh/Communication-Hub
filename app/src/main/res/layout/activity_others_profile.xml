@@ -34,8 +34,8 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         android:paddingBottom="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         tools:ignore="SpeakableTextPresentCheck">
@@ -100,30 +100,30 @@
                     android:textSize="20sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/otherStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="30dp"
-                    android:elevation="2dp"
-                    android:clickable="false"
-                    android:focusable="false"
                     android:background="@drawable/edit_text_background"
-                    android:id="@+id/otherStatus" >
+                    android:clickable="false"
+                    android:elevation="2dp"
+                    android:focusable="false">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/otherStatusDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/status"
-                        android:lines="5"
                         android:background="@drawable/edit_text_background"
-                        android:gravity="start"
-                        android:text="@string/status"
                         android:clickable="false"
                         android:focusable="false"
+                        android:gravity="start"
+                        android:hint="@string/status"
+                        android:lines="5"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
+                        android:text="@string/status"
                         android:textSize="20sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 

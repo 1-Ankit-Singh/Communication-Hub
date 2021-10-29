@@ -11,11 +11,13 @@ import com.squareup.picasso.Picasso
 
 class NewsAdapter(
     private val articlesArrayList: ArrayList<Articles>,
-    val context: Context) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+    val context: Context
+) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var newsAdapter = ItemNewsBinding.bind(itemView)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
         val adapter = ItemNewsBinding.inflate(LayoutInflater.from(parent.context))
         return ViewHolder(adapter.root)

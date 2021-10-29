@@ -51,8 +51,10 @@ class NewsDetailsActivity : AppCompatActivity() {
         Picasso.get().load(image).into(newsDetailsActivity.newsDetailImage)
 
         newsDetailsActivity.readFullNews.setOnClickListener {
-            startActivity(Intent(this,NewsDetailsReadingActivity::class.java)
-                .putExtra("URL", url))
+            startActivity(
+                Intent(this, NewsDetailsReadingActivity::class.java)
+                    .putExtra("URL", url)
+            )
         }
 
     }
@@ -64,7 +66,7 @@ class NewsDetailsActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home  -> {
+            R.id.home -> {
                 onBackPressed()
             }
         }

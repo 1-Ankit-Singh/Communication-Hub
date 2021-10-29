@@ -25,7 +25,7 @@ class GroupVideoCallingActivity : AppCompatActivity() {
     private val database = FirebaseFirestore.getInstance()
     private lateinit var appName: String
     private lateinit var phoneNumber: String
-    private lateinit var tokenCode:String
+    private lateinit var tokenCode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class GroupVideoCallingActivity : AppCompatActivity() {
         token()
 
         groupVideoCallingActivity.startBtn.setOnClickListener {
-            if (groupVideoCallingActivity.codeBox.text.trim().toString().isNotEmpty()){
+            if (groupVideoCallingActivity.codeBox.text.trim().toString().isNotEmpty()) {
                 if (groupVideoCallingActivity.codeBox.text.trim().toString() == tokenCode) {
                     startGroupVideoCall()
                 } else {
@@ -67,8 +67,10 @@ class GroupVideoCallingActivity : AppCompatActivity() {
         groupVideoCallingActivity.joinBtn.setOnClickListener {
             if (groupVideoCallingActivity.codeBox.text.trim().toString().isNotEmpty()) {
                 if (groupVideoCallingActivity.codeBox.text.trim().toString().length == 19
-                    && groupVideoCallingActivity.codeBox.text.trim().toString().startsWith("Clique+91")
-                    && groupVideoCallingActivity.codeBox.text.trim().toString() != tokenCode) {
+                    && groupVideoCallingActivity.codeBox.text.trim().toString()
+                        .startsWith("Clique+91")
+                    && groupVideoCallingActivity.codeBox.text.trim().toString() != tokenCode
+                ) {
                     startGroupVideoCall()
                 } else {
                     Toast.makeText(this, "Invalid code!!", Toast.LENGTH_SHORT).show()
@@ -82,19 +84,20 @@ class GroupVideoCallingActivity : AppCompatActivity() {
 
     private fun token() {
         database.collection("users").document(auth.uid!!).get().addOnSuccessListener {
-            if(it.exists()){
-                if(auth.uid == it.get("uid")){
+            if (it.exists()) {
+                if (auth.uid == it.get("uid")) {
                     appName = "Clique"
                     phoneNumber = it.getString("phoneNumber").toString()
-                    tokenCode = appName+phoneNumber
+                    tokenCode = appName + phoneNumber
                 }
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
-    private fun startGroupVideoCall(){
+    private fun startGroupVideoCall() {
         val options: JitsiMeetConferenceOptions = JitsiMeetConferenceOptions.Builder()
             .setRoom(groupVideoCallingActivity.codeBox.text.toString())
             .setWelcomePageEnabled(false)
@@ -119,8 +122,10 @@ class GroupVideoCallingActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java)
-            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        startActivity(
+            Intent(this, MainActivity::class.java)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
 }

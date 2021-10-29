@@ -32,13 +32,14 @@ class SignUpActivity : AppCompatActivity() {
 
     // Initializing Variables
     private lateinit var signUpActivity: ActivitySignUpBinding
+
     //Variable to set date
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
-    private val storage =FirebaseStorage.getInstance()
+    private val storage = FirebaseStorage.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
     private lateinit var downloadUrl: String
-    private lateinit var userPhoneNumber:String
+    private lateinit var userPhoneNumber: String
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,16 +59,19 @@ class SignUpActivity : AppCompatActivity() {
             val month = calender.get(Calendar.MONTH)
             val day = calender.get(Calendar.DAY_OF_MONTH)
             val dialog = DatePickerDialog(
-                this
-                , android.R.style.Theme_Holo_Light_Dialog_MinWidth
-                , dateSetListener
-                , year, month, day)
+                this,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                dateSetListener,
+                year,
+                month,
+                day
+            )
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
         }
 
         dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            val date = "$day/${month+1}/$year"
+            val date = "$day/${month + 1}/$year"
             signUpActivity.dob.setText(date)
         }
 
@@ -90,12 +94,20 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Photo cannot be empty!", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show()
-            } else if (dob.isEmpty()){
+            } else if (dob.isEmpty()) {
                 Toast.makeText(this, "DOB cannot be empty!", Toast.LENGTH_SHORT).show()
-            } else if (gender.isEmpty()){
+            } else if (gender.isEmpty()) {
                 Toast.makeText(this, "Please select your gender!", Toast.LENGTH_SHORT).show()
             } else {
-                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnail url*/, auth.uid!!, dob, gender, userPhoneNumber)
+                val user = User(
+                    name,
+                    downloadUrl,
+                    downloadUrl/*Needs to thumbnail url*/,
+                    auth.uid!!,
+                    dob,
+                    gender,
+                    userPhoneNumber
+                )
                 database.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -150,7 +162,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun startUpload(filePath: Uri) {
         signUpActivity.nextBtn.isEnabled = false
-        progressDialog =  createProgressDialog("Uploading Image...", false)
+        progressDialog = createProgressDialog("Uploading Image...", false)
         progressDialog.show()
         val ref = storage.reference.child("uploads/" + auth.uid.toString())
         val uploadTask = ref.putFile(filePath)
@@ -169,10 +181,12 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 signUpActivity.nextBtn.isEnabled = true
                 // Handle failures
-                Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG)
+                    .show()
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG)
+                .show()
         }
     }
 

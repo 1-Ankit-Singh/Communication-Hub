@@ -12,7 +12,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(item: Inbox, onClick: (name: String, photo: String, id: String, context: Context) -> Unit) =
+    fun bind(
+        item: Inbox,
+        onClick: (name: String, photo: String, id: String, context: Context) -> Unit
+    ) =
         with(itemView) {
             countTv.isVisible = item.count > 0
             countTv.text = item.count.toString()

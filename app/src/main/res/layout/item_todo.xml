@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="10dp"
     android:elevation="10dp"
+    android:padding="10dp"
     app:cardCornerRadius="10dp">
 
     <View
@@ -17,8 +17,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@android:color/white"
         android:paddingBottom="5dp">
 
@@ -39,23 +39,23 @@
                 android:layout_toStartOf="@+id/txtShowCategory"
                 android:ellipsize="end"
                 android:maxLines="1"
-                tools:text="Task Title"
                 android:textColor="#303030"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Task Title" />
 
             <TextView
                 android:id="@+id/txtShowTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_below="@+id/txtShowTitle"
+                android:layout_alignParentStart="true"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                tools:text="Task Subtitle"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Task Subtitle" />
 
             <TextView
                 android:id="@+id/txtShowCategory"
@@ -63,18 +63,18 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:ellipsize="end"
-                android:maxLines="1"
                 android:maxWidth="80dp"
-                tools:text="Category"
+                android:maxLines="1"
                 android:textColor="@color/litherGray"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:text="Category" />
 
             <TextView
                 android:id="@+id/textDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_below="@+id/txtShowTask"
+                android:layout_alignParentStart="true"
                 android:layout_marginTop="15dp"
                 android:text="@string/date"
                 android:textColor="@color/litherGray"
@@ -85,18 +85,18 @@
                 android:id="@+id/txtShowDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_below="@+id/textDate"
-                tools:text="22-12-2017"
+                android:layout_alignParentStart="true"
                 android:textColor="@android:color/black"
-                android:visibility="visible" />
+                android:visibility="visible"
+                tools:text="22-12-2017" />
 
             <TextView
                 android:id="@+id/textTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/txtShowTask"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="15dp"
                 android:text="@string/time"
                 android:textColor="@color/litherGray"
@@ -107,11 +107,11 @@
                 android:id="@+id/txtShowTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/textTime"
-                tools:text="22:12 AM"
+                android:layout_alignParentEnd="true"
                 android:textColor="@android:color/black"
-                android:visibility="visible" />
+                android:visibility="visible"
+                tools:text="22:12 AM" />
 
         </RelativeLayout>
 

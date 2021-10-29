@@ -40,19 +40,19 @@ class BookReadingActivity : AppCompatActivity() {
         getBooksInfo("android")
 
         bookReadingActivity.searchBtn.setOnClickListener {
-            if(bookReadingActivity.searchBooks.text.toString().isEmpty()){
+            if (bookReadingActivity.searchBooks.text.toString().isEmpty()) {
                 bookReadingActivity.searchBooks.error = "Please enter search query!!"
             } else {
                 getBooksInfo(bookReadingActivity.searchBooks.text.toString())
             }
         }
-        
+
     }
 
     private fun getBooksInfo(query: String) {
         bookInfoArrayList.clear()
         bookReadingActivity.progressBarBooks.visibility = View.VISIBLE
-        val url = if(query == "android"){
+        val url = if (query == "android") {
             "https://www.googleapis.com/books/v1/volumes?q=android&key=AIzaSyDCk7OrRDv1Xyk8FJux1GNeuCf9RIJbEsk"
         } else {
             "https://www.googleapis.com/books/v1/volumes?q=$query&key=AIzaSyDCk7OrRDv1Xyk8FJux1GNeuCf9RIJbEsk"
@@ -63,10 +63,10 @@ class BookReadingActivity : AppCompatActivity() {
             JsonObjectRequest(Request.Method.GET, url, null, {
                 bookAdapter = BookAdapter(bookInfoArrayList, this)
                 var jsonArray: JSONArray? = null
-                bookReadingActivity.progressBarBooks.visibility  = View.GONE
+                bookReadingActivity.progressBarBooks.visibility = View.GONE
                 try {
                     jsonArray = it.getJSONArray("items")
-                    for (i in 0 until jsonArray.length()){
+                    for (i in 0 until jsonArray.length()) {
                         val itemsObj: JSONObject = jsonArray.getJSONObject(i)
                         val volumeObj = itemsObj.getJSONObject("volumeInfo")
                         val title = volumeObj.optString("title")
@@ -75,7 +75,7 @@ class BookReadingActivity : AppCompatActivity() {
                         val publisher = volumeObj.optString("publisher")
                         val publishedDate = volumeObj.optString("publishedDate")
                         val description = volumeObj.optString("description")
-                        val pageCount:String = volumeObj.optString("pageCount")
+                        val pageCount: String = volumeObj.optString("pageCount")
                         val imageLinks = volumeObj.optJSONObject("imageLinks")
                         val thumbnail = imageLinks.optString("thumbnail")
                         val previewLink = volumeObj.optString("previewLink")
@@ -113,7 +113,7 @@ class BookReadingActivity : AppCompatActivity() {
                         bookReadingActivity.booksList.adapter = adapter
                     }
                     bookReadingActivity.booksList.adapter = BookAdapter(bookInfoArrayList, this)
-                } catch (e : JSONException){
+                } catch (e: JSONException) {
                     //e.printStackTrace()
                     Toast.makeText(this, "Failed to load Books!!", Toast.LENGTH_SHORT).show()
                 }
@@ -133,7 +133,7 @@ class BookReadingActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home  -> {
+            R.id.home -> {
                 onBackPressed()
             }
         }
@@ -144,7 +144,8 @@ class BookReadingActivity : AppCompatActivity() {
         finish()
         startActivity(
             Intent(this, MainActivity::class.java)
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
 }

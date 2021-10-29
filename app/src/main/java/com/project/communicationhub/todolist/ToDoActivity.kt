@@ -48,7 +48,7 @@ class ToDoActivity : AppCompatActivity() {
                 list.clear()
                 list.addAll(it)
                 adapter.notifyDataSetChanged()
-            }else{
+            } else {
                 list.clear()
                 adapter.notifyDataSetChanged()
             }
@@ -154,23 +154,25 @@ class ToDoActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.todo_menu, menu)
         val item = menu.findItem(R.id.search_todo)
         val searchView = item.actionView as SearchView
-        item.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
+        item.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 displayTodo()
                 return true
             }
+
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 displayTodo()
                 return true
             }
 
         })
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(!newText.isNullOrEmpty()){
+                if (!newText.isNullOrEmpty()) {
                     displayTodo(newText)
                 }
                 return true
@@ -182,11 +184,11 @@ class ToDoActivity : AppCompatActivity() {
 
     fun displayTodo(newText: String = "") {
         db.todoDao().getTask().observe(this, Observer {
-            if(it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 list.clear()
                 list.addAll(
                     it.filter { todo ->
-                        todo.title.contains(newText,true)
+                        todo.title.contains(newText, true)
                     }
                 )
                 adapter.notifyDataSetChanged()
@@ -201,7 +203,7 @@ class ToDoActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home  -> {
+            R.id.home -> {
                 onBackPressed()
             }
         }
@@ -210,8 +212,10 @@ class ToDoActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java)
-            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        startActivity(
+            Intent(this, MainActivity::class.java)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
     private fun openNewTask() {

@@ -37,6 +37,7 @@ class ProfileActivity : AppCompatActivity() {
 
     // Initializing Variables
     private lateinit var profileActivity: ActivityProfileBinding
+
     //Variable to set date
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
     private val storage = FirebaseStorage.getInstance()
@@ -44,7 +45,7 @@ class ProfileActivity : AppCompatActivity() {
     private val database = FirebaseFirestore.getInstance()
     private var ref: DocumentReference = database.collection("users").document(auth.uid!!)
     private lateinit var downloadUrl: String
-    private var editable:Boolean = false
+    private var editable: Boolean = false
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,29 +91,32 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         profileActivity.userImage.setOnClickListener {
-            if (editable){
+            if (editable) {
                 checkPermissionForImage()
             }
         }
 
         profileActivity.dob.setOnClickListener {
-            if(editable){
+            if (editable) {
                 val calender = Calendar.getInstance()
                 val year = calender.get(Calendar.YEAR)
                 val month = calender.get(Calendar.MONTH)
                 val day = calender.get(Calendar.DAY_OF_MONTH)
                 val dialog = DatePickerDialog(
-                    this
-                    , android.R.style.Theme_Holo_Light_Dialog_MinWidth
-                    , dateSetListener
-                    , year, month, day)
+                    this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    dateSetListener,
+                    year,
+                    month,
+                    day
+                )
                 dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.show()
             }
         }
 
         dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            val date = "$day/${month+1}/$year"
+            val date = "$day/${month + 1}/$year"
             profileActivity.dob.setText(date)
         }
 
@@ -180,11 +184,11 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Photo cannot be empty!", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show()
-            } else if (dob.isEmpty()){
+            } else if (dob.isEmpty()) {
                 Toast.makeText(this, "DOB cannot be empty!", Toast.LENGTH_SHORT).show()
-            } else if (status.isEmpty()){
+            } else if (status.isEmpty()) {
                 Toast.makeText(this, "Status cannot be empty!", Toast.LENGTH_SHORT).show()
-            } else if (gender.isEmpty()){
+            } else if (gender.isEmpty()) {
                 Toast.makeText(this, "Please select your gender!", Toast.LENGTH_SHORT).show()
             } else {
                 val delim = ":"
@@ -192,12 +196,19 @@ class ProfileActivity : AppCompatActivity() {
                 val userDob = arr[1]
                 userDob.trim()
                 database.collection("users").document(auth.uid!!).update(
-                    "name", name
-                    ,"dob", userDob
-                    ,"status", status
-                    ,"gender", gender
-                    ,"imageUrl", downloadUrl
-                    ,"thumbImage", downloadUrl).addOnSuccessListener {
+                    "name",
+                    name,
+                    "dob",
+                    userDob,
+                    "status",
+                    status,
+                    "gender",
+                    gender,
+                    "imageUrl",
+                    downloadUrl,
+                    "thumbImage",
+                    downloadUrl
+                ).addOnSuccessListener {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -216,14 +227,15 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun fetchData() {
         ref.get().addOnSuccessListener {
-            if(it.exists()){
-                if(auth.uid == it.get("uid")){
+            if (it.exists()) {
+                if (auth.uid == it.get("uid")) {
                     profileActivity.name.setText(it.getString("name").toString())
                     profileActivity.dob.setText("DOB: " + it.getString("dob").toString())
                     profileActivity.status.editText?.setText(it.getString("status").toString())
                     profileActivity.statusDetail.hint = "Your status"
                     profileActivity.phoneNumber.text = it.getString("phoneNumber").toString()
-                    profileActivity.genderDetails.text = "Gender: " + it.getString("gender").toString()
+                    profileActivity.genderDetails.text =
+                        "Gender: " + it.getString("gender").toString()
                     val userImgUrl = it.getString("imageUrl").toString()
                     Picasso.get()
                         .load(userImgUrl)
@@ -233,7 +245,8 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Something went wrong, Please try again!!", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -252,8 +265,10 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java)
-            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        startActivity(
+            Intent(this, MainActivity::class.java)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
 
@@ -299,7 +314,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun startUpload(filePath: Uri) {
         profileActivity.submitBtn.isEnabled = false
-        progressDialog =  createProgressDialog("Uploading Image...", false)
+        progressDialog = createProgressDialog("Uploading Image...", false)
         progressDialog.show()
         val ref = storage.reference.child("uploads/" + auth.uid.toString())
         val uploadTask = ref.putFile(filePath)
@@ -318,10 +333,12 @@ class ProfileActivity : AppCompatActivity() {
             } else {
                 profileActivity.submitBtn.isEnabled = true
                 // Handle failures
-                Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG)
+                    .show()
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Something went wrong. Please try again!", Toast.LENGTH_LONG)
+                .show()
         }
     }
 

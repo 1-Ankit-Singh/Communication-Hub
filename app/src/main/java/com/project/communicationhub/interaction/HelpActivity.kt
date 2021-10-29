@@ -43,7 +43,8 @@ class HelpActivity : AppCompatActivity() {
         finish()
         startActivity(
             Intent(this, MainActivity::class.java)
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
 }

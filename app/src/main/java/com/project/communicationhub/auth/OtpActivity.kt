@@ -127,6 +127,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                 ds.color = ds.linkColor    // you can use custom color
                 ds.isUnderlineText = false // this remove the underline
             }
+
             override fun onClick(textView: View) { // handle click event
                 showLoginActivity()
             }
@@ -210,7 +211,8 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     private fun resendVerificationCode(
         phoneNumber: String,
         mResendToken: PhoneAuthProvider.ForceResendingToken?
-    ) { PhoneAuthProvider.getInstance().verifyPhoneNumber(
+    ) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber,       // Phone number to verify
             60,         // Timeout duration
             TimeUnit.SECONDS,  // Unit of timeout
@@ -227,10 +229,11 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                 timeLeft = millisUntilFinished
                 otpActivity.counter.isVisible = true
                 otpActivity.counter.text = getString(
-                    R.string.seconds_remaining
-                    ,  millisUntilFinished / 1000)
+                    R.string.seconds_remaining, millisUntilFinished / 1000
+                )
                 //here you can have your logic to set text to edittext
             }
+
             override fun onFinish() {
                 otpActivity.resend.isEnabled = true
                 otpActivity.counter.isVisible = false
@@ -259,7 +262,11 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     progressDialog = createProgressDialog("Sending a verification code", false)
                     progressDialog.show()
                 } else {
-                    Toast.makeText(this, "Sorry, You Can't request new code now, Please wait...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Sorry, You Can't request new code now, Please wait...",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
