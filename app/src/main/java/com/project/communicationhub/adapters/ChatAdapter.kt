@@ -99,7 +99,7 @@ class ChatAdapter(
                                 Toast.makeText(
                                     context,
                                     "Text copied to clipboard",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
                             }
                         })
@@ -124,7 +124,7 @@ class ChatAdapter(
                                 Toast.makeText(
                                     context,
                                     "Text copied to clipboard",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
                             }
 
@@ -138,7 +138,7 @@ class ChatAdapter(
                                 Toast.makeText(
                                     context,
                                     "Text copied to clipboard",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
                             }
                         })
@@ -175,8 +175,7 @@ abstract class DoubleClickListener : View.OnClickListener {
         } /*else if (clickTime - lastClickTime < Long_CLICK_TIME_DELTA){
             onLongClick(v)
             lastClickTime = 0
-        }*/
-        else {
+        }*/ else {
             //onSingleClick(v)
             onLongClick(v)
         }
@@ -189,6 +188,6 @@ abstract class DoubleClickListener : View.OnClickListener {
 
     companion object {
         private const val DOUBLE_CLICK_TIME_DELTA: Long = 300 //milliseconds
-        //private const val Long_CLICK_TIME_DELTA: Long = 300 //milliseconds
+        // private const val Long_CLICK_TIME_DELTA: Long = 500 //milliseconds
     }
 }
