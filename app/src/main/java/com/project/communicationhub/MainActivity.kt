@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
+        // Handle item selection and navigating/inflating to selected module
         return when (item.itemId) {
             R.id.profile -> {
                 profile()
