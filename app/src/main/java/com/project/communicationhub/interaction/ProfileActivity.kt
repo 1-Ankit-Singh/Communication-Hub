@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams.*
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -86,8 +87,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         profileActivity.logout.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
+            signOutAlertDialogBox(it)
         }
 
         profileActivity.userImage.setOnClickListener {
@@ -223,6 +223,30 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun signOutAlertDialogBox(view: View) {
+        //Instantiate builder variable
+        val builder = AlertDialog.Builder(view.context)
+        // set title
+        builder.setTitle("CLIQUE")
+        //set content area
+        builder.setMessage("Are you sure, you want to logout?")
+        //set negative button
+        builder.setPositiveButton(
+            "Yes"
+        ) { _, _ ->
+            auth.signOut()
+            finish()
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        //set positive button
+        builder.setNegativeButton(
+            "No"
+        ) { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 
     private fun fetchData() {
