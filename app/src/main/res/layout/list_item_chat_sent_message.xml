@@ -25,7 +25,9 @@
         android:id="@+id/materialCardView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:elevation="0dp"
+        android:focusable="true"
         app:cardBackgroundColor="@color/blue_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,14 +63,6 @@
                 android:textColor="#A6ffffff"
                 android:textSize="14sp"
                 tools:text="12:00 AM" />
-
-            <!--<ImageView
-                android:id="@+id/sentOrNot"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="4dp"
-                app:srcCompat="@drawable/check"
-                android:contentDescription="@drawable/check" />-->
 
         </com.google.android.flexbox.FlexboxLayout>
 

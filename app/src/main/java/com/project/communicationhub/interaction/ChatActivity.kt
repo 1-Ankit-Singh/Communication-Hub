@@ -117,16 +117,16 @@ class ChatActivity : AppCompatActivity() {
         listenMessages() { msg, update ->
             if (update) {
                 updateMessage(msg)
+                updateReadCount()
             } else {
                 addMessage(msg)
+                updateReadCount()
             }
         }
 
         chatAdapter.highFiveClick = { id, status ->
             updateHighFive(id, status)
         }
-
-        updateReadCount()
 
     }
 
@@ -181,7 +181,7 @@ class ChatActivity : AppCompatActivity() {
         }
         mutableItems.add(event)
         chatAdapter.notifyItemInserted(mutableItems.size)
-        msgRv.scrollToPosition(mutableItems.size + 1)
+        msgRv.smoothScrollToPosition(mutableItems.size + 1)
     }
 
     private fun updateMessage(msg: Message) {
