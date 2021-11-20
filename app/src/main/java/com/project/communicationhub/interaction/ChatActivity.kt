@@ -40,6 +40,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var image: String
     private val mCurrentUid: String = FirebaseAuth.getInstance().uid!!
     private val db: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val dbRef: DatabaseReference = FirebaseDatabase.getInstance().reference
     private lateinit var currentUser: User
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var keyboardVisibilityHelper: KeyboardVisibilityUtil
@@ -128,7 +129,41 @@ class ChatActivity : AppCompatActivity() {
             updateHighFive(id, status)
         }
 
+        userStatus()
+
     }
+
+    private fun userStatus() {
+        val statusListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val status =
+                    snapshot.child("status").child(friendId).child("status").value.toString()
+                val seen =
+                    snapshot.child("chats/$friendId/$mCurrentUid").child("count").value.toString()
+                // val seenStatus = snapshot.child("chats/$mCurrentUid/$friendId").child("deliveryStatus").value.toString()
+                statusTv.text = status
+                when {
+                    status == "Online" -> {
+                        getInbox(friendId, mCurrentUid).child("deliveryStatus").setValue("Sent")
+                    }
+                    status == "OffLine" -> {
+                        getInbox(friendId, mCurrentUid).child("deliveryStatus")
+                            .setValue("Delivered")
+                    }
+                    seen == "0" -> {
+                        getInbox(friendId, mCurrentUid).child("deliveryStatus").setValue("Seen")
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+            }
+        }
+        dbRef.addValueEventListener(statusListener)
+    }
+
 
     private fun viewProfile() {
         startActivity(

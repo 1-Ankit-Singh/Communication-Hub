@@ -15,8 +15,6 @@
         android:id="@+id/messageCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
         app:cardBackgroundColor="#f3f3f3"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.project.communicationhub.adapters.ScreenSlidePagerAdapter
 import com.project.communicationhub.books.BookReadingActivity
 import com.project.communicationhub.databinding.ActivityMainBinding
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     // Initializing Variables
     private lateinit var mainActivity: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private val db: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }).attach()
+        userStatus()
+    }
+
+    private fun userStatus() {
+        db.reference.child("status/${auth.uid}").child("status").setValue("Online")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -100,6 +107,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun help() {
         startActivity(Intent(this, HelpActivity::class.java))
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        db.reference.child("status/${auth.uid}").child("status").setValue("Offline")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        db.reference.child("status/${auth.uid}").child("status").setValue("Offline")
     }
 
 }
