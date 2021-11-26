@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/74363051/143533841-b1c733a3-3f9e-436c-a20e-b71212864c3c.png)
+# Communication-Hub -> CLIQUE (Android Application)
+![image](https://user-images.githubusercontent.com/74363051/143533973-e70609f4-7f8d-42c3-8c66-753b3dcb06b0.png)
 ![image](https://user-images.githubusercontent.com/74363051/143533301-c34e2c86-e289-4e1d-973f-75fb5e7a6d08.png)
 
 # RESOURCES
@@ -26,4 +27,4 @@ Resources that enabled me to create the CLIQUE android chatting application
 •	Flexbox layout
 •	Other default libraries
 
-and News API from news.org and Google Book API
+-> News API from news.org and Google Book API
