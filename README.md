@@ -1,0 +1,2 @@
+# Communication-Hub -> CLIQUE (Android Application)
+Clique is an Android application that allows users to chat with one another and hold meetings. To do so, users must create an account on the app and provide information such as their phone number, name, gender, date of birth, and a profile picture, all of which they can edit later except the phone number. Users can utilise a variety of additional features in addition to chatting and meeting features, such as managing their timetable, reading books, and reading news, among other things. 
