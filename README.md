@@ -2,20 +2,20 @@
 ![image](https://user-images.githubusercontent.com/74363051/143533973-e70609f4-7f8d-42c3-8c66-753b3dcb06b0.png)
 ![image](https://user-images.githubusercontent.com/74363051/143533301-c34e2c86-e289-4e1d-973f-75fb5e7a6d08.png)
 
-# RESOURCES
+# Resources
 Resources that enabled me to create the CLIQUE android chatting application
 
-->	User Interface
+##	User Interface
 •	Flaticon Icon
 •	Wallpapers Book
 
-->	Modules
+##	Modules
 •	Coding Blocks Chatting
 •	Geeks-For-Geeks Books
 •	Geeks-For-Geeks News
 •	Vinson Developers News 
 
-->	Libraries
+##	Libraries
 •	Firebase
 •	Picasso
 •	Volley
@@ -27,4 +27,4 @@ Resources that enabled me to create the CLIQUE android chatting application
 •	Flexbox layout
 •	Other default libraries
 
--> News API from news.org and Google Book API
+## News API from news.org and Google Book API
