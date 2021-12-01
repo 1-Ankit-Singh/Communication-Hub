@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -44,6 +45,7 @@ class ProfileActivity : AppCompatActivity() {
     private val storage = FirebaseStorage.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
+    private val db: FirebaseDatabase = FirebaseDatabase.getInstance()
     private var ref: DocumentReference = database.collection("users").document(auth.uid!!)
     private lateinit var name: String
     private lateinit var dob: String
@@ -245,6 +247,7 @@ class ProfileActivity : AppCompatActivity() {
             "Yes"
         ) { _, _ ->
             auth.signOut()
+            db.reference.child("status/${auth.uid}").child("status").setValue("Offline")
             finish()
             startActivity(Intent(this, LoginActivity::class.java))
         }
