@@ -197,12 +197,16 @@ class ProfileActivity : AppCompatActivity() {
                 ).addOnSuccessListener {
                     disableEditing()
                     fetchData()
-                    Toast.makeText(this, "Profile Updated Successfully",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
                     //val intent = Intent(this, MainActivity::class.java)
                     //startActivity(intent)
                     //finish()
                 }.addOnFailureListener {
-                    Toast.makeText(this, "Profile Updating Failed, Please try again!!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Profile Updating Failed, Please try again!!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     //profileActivity.submitBtn.isEnabled = true
                 }
             }
