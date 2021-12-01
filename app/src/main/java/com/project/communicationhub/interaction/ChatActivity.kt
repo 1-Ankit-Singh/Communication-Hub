@@ -139,10 +139,10 @@ class ChatActivity : AppCompatActivity() {
                 // Get Post object and use the values to update the UI
                 val status =
                     snapshot.child("status").child(friendId).child("status").value.toString()
-                val seen =
-                    snapshot.child("chats/$friendId/$mCurrentUid").child("count").value.toString()
-                // val seenStatus = snapshot.child("chats/$mCurrentUid/$friendId").child("deliveryStatus").value.toString()
                 statusTv.text = status
+                /*val seen =
+                    snapshot.child("chats/$friendId/$mCurrentUid").child("count").value.toString()
+                val seenStatus = snapshot.child("chats/$mCurrentUid/$friendId").child("deliveryStatus").value.toString()
                 when {
                     status == "Online" -> {
                         getInbox(friendId, mCurrentUid).child("deliveryStatus").setValue("Sent")
@@ -154,7 +154,7 @@ class ChatActivity : AppCompatActivity() {
                     seen == "0" -> {
                         getInbox(friendId, mCurrentUid).child("deliveryStatus").setValue("Seen")
                     }
-                }
+                }*/
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

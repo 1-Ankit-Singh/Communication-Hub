@@ -250,8 +250,8 @@ class ProfileActivity : AppCompatActivity() {
         builder.setPositiveButton(
             "Yes"
         ) { _, _ ->
-            auth.signOut()
             db.reference.child("status/${auth.uid}").child("status").setValue("Offline")
+            auth.signOut()
             finish()
             startActivity(Intent(this, LoginActivity::class.java))
         }
