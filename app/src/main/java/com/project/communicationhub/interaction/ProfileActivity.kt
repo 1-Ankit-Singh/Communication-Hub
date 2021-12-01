@@ -45,6 +45,10 @@ class ProfileActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
     private var ref: DocumentReference = database.collection("users").document(auth.uid!!)
+    private lateinit var name: String
+    private lateinit var dob: String
+    private lateinit var status: String
+    private lateinit var gender: String
     private lateinit var downloadUrl: String
     private var editable: Boolean = false
     private lateinit var progressDialog: ProgressDialog
@@ -84,6 +88,19 @@ class ProfileActivity : AppCompatActivity() {
             profileActivity.gender.visibility = View.VISIBLE
             profileActivity.cancelBtn.visibility = View.VISIBLE
             profileActivity.submitBtn.visibility = View.VISIBLE
+
+            /*when (gender) {
+                "Male" -> {
+                    profileActivity.male.isChecked = true
+                }
+                "Female" -> {
+                    profileActivity.female.isChecked = true
+                }
+                "Others" -> {
+                    profileActivity.others.isChecked = true
+                }
+            }*/
+
         }
 
         profileActivity.logout.setOnClickListener {
@@ -116,64 +133,31 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            val date = "$day/${month + 1}/$year"
+            val date = "DOB: $day/${month + 1}/$year"
             profileActivity.dob.setText(date)
         }
 
         profileActivity.cancelBtn.setOnClickListener {
-            editable = false
-
-            profileActivity.statusDetail.hint = "Enter your status"
-
-            profileActivity.name.isClickable = false
-            profileActivity.name.isFocusableInTouchMode = false
-            profileActivity.name.isFocusable = false
-
-            profileActivity.dob.isClickable = false
-
-            profileActivity.statusDetail.isClickable = false
-            profileActivity.statusDetail.isFocusableInTouchMode = false
-            profileActivity.statusDetail.isFocusable = false
-
-            profileActivity.gender.visibility = View.GONE
-
-            val params: LinearLayout.LayoutParams =
-                LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-            params.setMargins(75, 60, 75, 69)
-            profileActivity.genderDetails.layoutParams = params
-            profileActivity.cancelBtn.visibility = View.GONE
-            profileActivity.submitBtn.visibility = View.GONE
+            disableEditing()
+            fetchData()
         }
 
 
         profileActivity.submitBtn.setOnClickListener {
-            editable = false
+            //profileActivity.submitBtn.isEnabled = false
 
-            profileActivity.statusDetail.hint = "Enter your status"
-
-            profileActivity.name.isClickable = false
-            profileActivity.name.isFocusableInTouchMode = false
-            profileActivity.name.isFocusable = false
-
-            profileActivity.dob.isClickable = false
-
-            profileActivity.statusDetail.isClickable = false
-            profileActivity.statusDetail.isFocusableInTouchMode = false
-            profileActivity.statusDetail.isFocusable = false
-
-            profileActivity.gender.visibility = View.GONE
-
-            profileActivity.submitBtn.isEnabled = false
-
-            val name = profileActivity.name.text.toString()
-            val dob = profileActivity.dob.text.toString()
-            val status = profileActivity.status.editText?.text.toString()
-            val gender = when {
+            name = profileActivity.name.text.toString()
+            dob = profileActivity.dob.text.toString()
+            status = profileActivity.status.editText?.text.toString()
+            gender = when {
                 profileActivity.male.isChecked -> {
                     "Male"
                 }
                 profileActivity.female.isChecked -> {
                     "Female"
+                }
+                profileActivity.others.isChecked -> {
+                    "Other"
                 }
                 else -> {
                     "Other"
@@ -194,12 +178,12 @@ class ProfileActivity : AppCompatActivity() {
                 val delim = ":"
                 val arr = dob.split(delim).toTypedArray()
                 val userDob = arr[1]
-                userDob.trim()
+                //userDob.trim()
                 database.collection("users").document(auth.uid!!).update(
                     "name",
                     name,
                     "dob",
-                    userDob,
+                    userDob.trim(),
                     "status",
                     status,
                     "gender",
@@ -209,20 +193,44 @@ class ProfileActivity : AppCompatActivity() {
                     "thumbImage",
                     downloadUrl
                 ).addOnSuccessListener {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    disableEditing()
+                    fetchData()
+                    Toast.makeText(this, "Profile Updated Successfully",Toast.LENGTH_SHORT).show()
+                    //val intent = Intent(this, MainActivity::class.java)
+                    //startActivity(intent)
+                    //finish()
                 }.addOnFailureListener {
-                    profileActivity.submitBtn.isEnabled = true
+                    Toast.makeText(this, "Profile Updating Failed, Please try again!!",Toast.LENGTH_SHORT).show()
+                    //profileActivity.submitBtn.isEnabled = true
                 }
-                val params: LinearLayout.LayoutParams =
-                    LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-                params.setMargins(75, 60, 75, 69)
-                profileActivity.genderDetails.layoutParams = params
-                profileActivity.submitBtn.visibility = View.GONE
             }
         }
 
+    }
+
+    private fun disableEditing() {
+        editable = false
+
+        profileActivity.statusDetail.hint = "Enter your status"
+
+        profileActivity.name.isClickable = false
+        profileActivity.name.isFocusableInTouchMode = false
+        profileActivity.name.isFocusable = false
+
+        profileActivity.dob.isClickable = false
+
+        profileActivity.statusDetail.isClickable = false
+        profileActivity.statusDetail.isFocusableInTouchMode = false
+        profileActivity.statusDetail.isFocusable = false
+
+        profileActivity.gender.visibility = View.GONE
+
+        val params: LinearLayout.LayoutParams =
+            LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        params.setMargins(75, 60, 75, 69)
+        profileActivity.genderDetails.layoutParams = params
+        profileActivity.cancelBtn.visibility = View.GONE
+        profileActivity.submitBtn.visibility = View.GONE
     }
 
     private fun signOutAlertDialogBox(view: View) {
@@ -253,16 +261,21 @@ class ProfileActivity : AppCompatActivity() {
         ref.get().addOnSuccessListener {
             if (it.exists()) {
                 if (auth.uid == it.get("uid")) {
-                    profileActivity.name.setText(it.getString("name").toString())
-                    profileActivity.dob.setText("DOB: " + it.getString("dob").toString())
-                    profileActivity.status.editText?.setText(it.getString("status").toString())
+                    name = it.getString("name").toString()
+                    dob = "DOB: " + it.getString("dob").toString()
+                    status = it.getString("status").toString()
+                    gender = "Gender: " + it.getString("gender").toString()
+                    downloadUrl = it.getString("imageUrl").toString()
+
+                    profileActivity.name.setText(name)
+                    profileActivity.dob.setText(dob)
+                    profileActivity.status.editText?.setText(status)
                     profileActivity.statusDetail.hint = "Your status"
                     profileActivity.phoneNumber.text = it.getString("phoneNumber").toString()
-                    profileActivity.genderDetails.text =
-                        "Gender: " + it.getString("gender").toString()
-                    val userImgUrl = it.getString("imageUrl").toString()
+                    profileActivity.genderDetails.text = gender
+                    //val userImgUrl = it.getString("imageUrl").toString()
                     Picasso.get()
-                        .load(userImgUrl)
+                        .load(downloadUrl)
                         .placeholder(R.drawable.defaultavatar)
                         .error(R.drawable.defaultavatar)
                         .into(profileActivity.userImage)
